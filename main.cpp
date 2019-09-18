@@ -5,6 +5,7 @@
 //##########ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "FPS.hpp"
+#include "Singleton.h"
 #include <math.h>
 
 //########## マクロ定義 ##########
@@ -38,6 +39,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
 
+	Singleton::Create();
+
 	while (TRUE)	//無限ループ
 	{
 		if (ProcessMessage() != 0) { break; }	//メッセージ処理の結果がエラーのとき、強制終了
@@ -54,6 +57,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		fps->Wait();		//FPSの処理[待つ]
 	}
+
+	Singleton::Destroy();
 
 	DxLib_End();		//ＤＸライブラリ使用の終了処理
 
