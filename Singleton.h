@@ -5,8 +5,10 @@
 
 #pragma once
 
+//########## ヘッダーファイル読み込み ##########
 #include <stdio.h>
 
+//########## クラスの定義 ##########
 //シングルトンクラス
 class Singleton
 {
@@ -25,6 +27,6 @@ public:
 protected:
 	static Singleton *p_Instance;	//インスタンス
 
-	Singleton();	//隠しコンストラクタ
-	~Singleton();	//隠しデストラクタ
+	Singleton();			//隠しコンストラクタ
+	virtual ~Singleton();	//隠しデストラクタ
 };

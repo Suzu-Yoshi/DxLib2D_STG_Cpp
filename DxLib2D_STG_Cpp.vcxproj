@@ -154,10 +154,12 @@
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Singleton_T.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPS.hpp" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Singleton_T.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
