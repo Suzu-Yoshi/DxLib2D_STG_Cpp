@@ -13,7 +13,7 @@ VOID CHARACTOR::MoveUp(VOID)
 {
 	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_UP))
 	{
-		DrawString(100, 100, "TESYT", RGB(14, 144, 144));
+		DrawString(100, 100, "UP", RGB(255,255,255));
 	}
 
 	return;
@@ -22,18 +22,33 @@ VOID CHARACTOR::MoveUp(VOID)
 //¶‚É“®‚­
 VOID CHARACTOR::MoveLeft(VOID)
 {
+	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_LEFT))
+	{
+		DrawString(100, 100, "LEFT", RGB(255, 255, 255));
+	}
+
 	return;
 }
 
 //‰º‚É“®‚­
 VOID CHARACTOR::MoveDown(VOID)
 {
+	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_DOWN))
+	{
+		DrawString(100, 100, "DOWN", RGB(255, 255, 255));
+	}
+
 	return;
 }
 
 //‰E‚É“®‚­
 VOID CHARACTOR::MoveRight(VOID)
 {
+	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_RIGHT))
+	{
+		DrawString(100, 100, "RIGHT", RGB(255, 255, 255));
+	}
+
 	return;
 }
 

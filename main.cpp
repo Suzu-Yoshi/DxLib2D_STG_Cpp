@@ -61,6 +61,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
 		chara->MoveUp();
+		chara->MoveDown();
+		chara->MoveRight();
+		chara->MoveLeft();
 
 
 
