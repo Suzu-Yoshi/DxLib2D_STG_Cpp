@@ -5,6 +5,9 @@
 //##########ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "FPS.hpp"
+#include "KEYDOWN.hpp"
+#include "CHARACTOR.hpp"
+
 #include <math.h>
 
 //########## マクロ定義 ##########
@@ -37,6 +40,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);								//Draw系関数は裏画面に描画
 
 	FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
+	KEYDOWN *keydown = new KEYDOWN();							//KEYDOWNクラスのオブジェクトを生成
+	
+	CHARACTOR *chara = new CHARACTOR();
 
 	while (TRUE)	//無限ループ
 	{
@@ -44,18 +50,31 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		if (ClearDrawScreen() != 0) { break; }	//画面を消去できなかったとき、強制終了
 
-		//MY_ALL_KEYDOWN_UPDATE();				//キーの状態を取得
+		keydown->KeyDownUpdate();	//キーの入力状態を更新する
 
-		fps->Update();		//FPSの処理[更新]
+		fps->Update();				//FPSの処理[更新]
 
-		fps->Draw(0,0);		//FPSの処理[描画]
+		keydown->IsKeyDown(KEY_INPUT_LEFT);
+		
+		//▼▼▼▼▼ゲームのシーンここから▼▼▼▼▼
 
-		ScreenFlip();		//モニタのリフレッシュレートの速さで裏画面を再描画
+		keydown->IsKeyDown(KEY_INPUT_UP);
 
-		fps->Wait();		//FPSの処理[待つ]
+		chara->MoveUp();
+
+
+
+		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
+
+		fps->Draw(0,0);				//FPSの処理[描画]
+
+		ScreenFlip();				//モニタのリフレッシュレートの速さで裏画面を再描画
+
+		fps->Wait();				//FPSの処理[待つ]
 	}
 
 	delete fps;				//FPSを破棄
+	delete keydown;			//keydownを破棄
 
 	DxLib_End();			//ＤＸライブラリ使用の終了処理
 

@@ -84,7 +84,6 @@ VOID FPS::Draw(int drawX, int drawY)
 {
 	//•¶Žš—ñ‚ð•`‰æ
 	DrawFormatString(drawX, drawY, GetColor(255, 255, 255), "FPS:%.1f", this->drawValue);
-	DrawString(100, 100, "TEST", RGB(255, 255, 255));
 	return;
 }
 

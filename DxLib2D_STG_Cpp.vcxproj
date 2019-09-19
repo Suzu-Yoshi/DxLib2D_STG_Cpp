@@ -151,12 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CHARACTOR.cpp" />
     <ClCompile Include="FPS.cpp" />
+    <ClCompile Include="KEYDOWN.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CHARACTOR.hpp" />
     <ClInclude Include="FPS.hpp" />
+    <ClInclude Include="KEYDOWN.hpp" />
     <ClInclude Include="Singleton.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
