@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FPS.cpp" />
+    <ClCompile Include="IMAGE.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FPS.hpp" />
+    <ClInclude Include="IMAGE.hpp" />
+    <ClInclude Include="main.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6A0FB16C-2B27-4E6C-88E0-5BE3F6104E6F}</ProjectGuid>
