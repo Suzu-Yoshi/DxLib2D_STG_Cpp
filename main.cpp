@@ -7,6 +7,7 @@
 #include "main.hpp"
 #include "FPS.hpp"
 #include "KEYDOWN.hpp"
+#include "IMAGE.hpp"
 
 #include <math.h>
 
@@ -27,6 +28,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
 	KEYDOWN *keydown = new KEYDOWN();							//KEYDOWNクラスのオブジェクトを生成
 
+	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
+	
+	if (jiki->GetIsLoad() == FALSE) { return -1; };	//読み込みチェック
+
 	while (TRUE)	//無限ループ
 	{
 		if (ProcessMessage() != 0) { break; }	//メッセージ処理の結果がエラーのとき、強制終了
@@ -43,6 +48,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
+		jiki->Draw();
 
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 
@@ -52,6 +58,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		fps->Wait();				//FPSの処理[待つ]
 	}
+
+	delete jiki;
 
 	delete fps;				//FPSを破棄
 	delete keydown;			//keydownを破棄

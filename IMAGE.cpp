@@ -8,32 +8,55 @@
 //########## クラスの定義 ##########
 
 //コンストラクタ
-IMAGE::IMAGE(char *path)
+//引　数：const char *：画像のディレクトリ
+//引　数：const char *：画像の名前
+IMAGE::IMAGE(const char *dir,const char *name)
 {
+	//メンバ変数を初期化
+	FilePath = "";	//パス
+	FileName = "";	//名前
 
+	Handle = -1;	//ハンドル
 
+	X = 0;			//X位置
+	Y = 0;			//Y位置
+	Width = 0;		//幅
+	Height = 0;		//高さ
 
-	this->Handle = LoadGraph(path);	//画像を読み込み
+	IsLoad = false;	//読み込めたか？
+
+	//画像を読み込み
+	std::string LoadfilePath;	//画像のファイルパスを作成
+	LoadfilePath += dir;
+	LoadfilePath += name;
+
+	this->Handle = LoadGraph(LoadfilePath.c_str());	//画像を読み込み
 	
 	if (this->Handle == -1)	//画像が読み込めなかったとき
 	{
 		std::string ErroeMsg(IMAGE_ERROR_MSG);	//エラーメッセージ作成
-		ErroeMsg += TEXT(IMAGE_ERROR_MSG);		//エラーメッセージ
 		ErroeMsg += TEXT('\n');					//改行
-		ErroeMsg += path;						//画像のパス
+		ErroeMsg += LoadfilePath;				//画像のパス
 
 		MessageBox(
 			NULL, 
-			ErroeMsg.c_str,	//char * を返す
+			ErroeMsg.c_str(),	//char * を返す
 			TEXT(IMAGE_ERROR_TTILE),
 			MB_OK);
 
 		return;
 	}
 
+	this->FilePath = LoadfilePath;		//画像のパスを設定
+	this->FileName = name;				//画像の名前を設定
 
-	this->FilePath = path;			//画像のパスを設定
+	GetGraphSize(
+		this->Handle,	//このハンドルの画像の大きさを取得
+		&this->Width,	//Widthのアドレスを渡す
+		&this->Height	//Heightのアドレスを渡す
+	);
 
+	this->IsLoad = true;		//読み込めた
 
 	return;
 }
@@ -42,6 +65,60 @@ IMAGE::IMAGE(char *path)
 IMAGE::~IMAGE()
 {
 	DeleteGraph(this->Handle);		//読み込んだ画像を削除
-	
+	return;
+}
+
+//ファイルの名前を取得
+std::string IMAGE::GetFileName(void)
+{
+	return this->FileName;
+}
+
+//X位置を設定
+void IMAGE::SetX(int numX)
+{
+	this->X = numX;	return;
+}
+
+//Y位置を設定
+void IMAGE::SetY(int numY)
+{
+	this->Y = numY;	return;
+}
+
+//X位置を取得
+int IMAGE::GetX(void)
+{
+	return this->X;
+}
+
+//Y位置を取得
+int IMAGE::GetY(void)
+{
+	return this->Y;
+}
+
+//幅を取得
+int IMAGE::GetWidth(void)
+{
+	return this->Width;
+}
+
+//高さを取得
+int IMAGE::GetHeight(void)
+{
+	return this->Height;
+}
+
+//読み込めた？
+bool IMAGE::GetIsLoad(void)
+{
+	return this->IsLoad;
+}
+
+//画像を描画
+void IMAGE::Draw(void)
+{
+	DrawGraph(this->X, this->Y, this->Handle, TRUE);
 	return;
 }

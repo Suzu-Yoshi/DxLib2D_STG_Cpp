@@ -8,6 +8,12 @@
 #include "DxLib.h"
 #include <string>
 
+//########## マクロ定義＿画像のファイルパスと名前 ##########
+#define MY_IMG_DIR_JIKI		R"(.\MY_IMG\JIKI\)"	//自機の画像ファイルの場所
+
+#define MY_IMG_NAME_JIKI_1	R"(jiki_1.png)"			//自機１の名前
+#define MY_IMG_NAME_JIKI_2	R"(jiki_2.png)"			//自機２の名前
+
 //########## マクロ定義 ##########
 #define IMAGE_ERROR_TTILE "IMAGE_ERROR"					//エラータイトル
 #define IMAGE_ERROR_MSG	"画像が読み込めませんでした"	//エラーメッセージ
@@ -27,16 +33,22 @@ private:
 	int Width;				//幅
 	int Height;				//高さ
 
+	bool IsLoad;			//読み込めたか？
+
 public:
-	IMAGE(char *);					//コンストラクタ
-	~IMAGE();						//デストラクタ
+	IMAGE(const char *,const char *);		//コンストラクタ
+	~IMAGE();								//デストラクタ
 
 	std::string GetFileName(void);	//名前を取得
 
+	void SetX(int);					//X位置を設定
+	void SetY(int);					//Y位置を設定
 	int GetX(void);					//X位置を取得
 	int GetY(void);					//Y位置を取得
 	int GetWidth(void);				//幅を取得
 	int GetHeight(void);			//高さを取得
+
+	bool GetIsLoad(void);			//読み込めた？
 
 	void Draw(void);				//画像を描画
 };
