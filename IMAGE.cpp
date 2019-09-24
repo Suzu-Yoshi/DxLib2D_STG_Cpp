@@ -13,17 +13,17 @@
 IMAGE::IMAGE(const char *dir,const char *name)
 {
 	//メンバ変数を初期化
-	FilePath = "";	//パス
-	FileName = "";	//名前
+	this->FilePath = "";	//パス
+	this->FileName = "";	//名前
 
-	Handle = -1;	//ハンドル
+	this->Handle = -1;		//ハンドル
 
-	X = 0;			//X位置
-	Y = 0;			//Y位置
-	Width = 0;		//幅
-	Height = 0;		//高さ
+	this->X = 0;			//X位置
+	this->Y = 0;			//Y位置
+	this->Width = 0;		//幅
+	this->Height = 0;		//高さ
 
-	IsLoad = false;	//読み込めたか？
+	this->IsLoad = false;	//読み込めたか？
 
 	//画像を読み込み
 	std::string LoadfilePath;	//画像のファイルパスを作成

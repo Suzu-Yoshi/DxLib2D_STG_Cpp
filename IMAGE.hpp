@@ -8,13 +8,13 @@
 #include "DxLib.h"
 #include <string>
 
-//########## マクロ定義＿画像のファイルパスと名前 ##########
+//########## マクロ定義：画像のファイルパスと名前 ##########
 #define MY_IMG_DIR_JIKI		R"(.\MY_IMG\JIKI\)"	//自機の画像ファイルの場所
 
 #define MY_IMG_NAME_JIKI_1	R"(jiki_1_mini.png)"		//自機１の名前
 #define MY_IMG_NAME_JIKI_2	R"(jiki_2_mini.png)"		//自機２の名前
 
-//########## マクロ定義 ##########
+//########## マクロ定義：エラーメッセージ##########
 #define IMAGE_ERROR_TTILE "IMAGE_ERROR"					//エラータイトル
 #define IMAGE_ERROR_MSG	"画像が読み込めませんでした"	//エラーメッセージ
 
