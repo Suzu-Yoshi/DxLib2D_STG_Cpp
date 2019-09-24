@@ -13,10 +13,10 @@
 class KEYDOWN
 {
 private:
-	static char AllKeyState[256];		//すべてのキーの状態が入る	//staticで共通の変数を使用する
+	static char AllKeyState[256];		//すべてのキーの状態が入る	//staticは、共通の変数を使用する
 
 public:
-	static VOID KeyDownUpdate(VOID);	//キーの入力状態を更新する	//staticで共通の関数を使用する
+	static VOID KeyDownUpdate(VOID);	//キーの入力状態を更新する	//staticは、共通の関数を使用する
 
 	//キーを押しているか、キーコードで判断する
 	//引　数：キーコード

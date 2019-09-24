@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
 	
-	if (jiki->GetIsLoad() == FALSE) { return -1; };	//読み込みチェック
+	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
 
 	while (TRUE)	//無限ループ
 	{

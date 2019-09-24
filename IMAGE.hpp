@@ -11,8 +11,8 @@
 //########## マクロ定義＿画像のファイルパスと名前 ##########
 #define MY_IMG_DIR_JIKI		R"(.\MY_IMG\JIKI\)"	//自機の画像ファイルの場所
 
-#define MY_IMG_NAME_JIKI_1	R"(jiki_1.png)"			//自機１の名前
-#define MY_IMG_NAME_JIKI_2	R"(jiki_2.png)"			//自機２の名前
+#define MY_IMG_NAME_JIKI_1	R"(jiki_1_mini.png)"		//自機１の名前
+#define MY_IMG_NAME_JIKI_2	R"(jiki_2_mini.png)"		//自機２の名前
 
 //########## マクロ定義 ##########
 #define IMAGE_ERROR_TTILE "IMAGE_ERROR"					//エラータイトル
