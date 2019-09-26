@@ -87,6 +87,12 @@ VOID FPS::Draw(int drawX, int drawY)
 	return;
 }
 
+//FPS値を取得する
+int FPS::Getvalue(VOID)
+{
+	return this->value;
+}
+
 //デストラクタ
 FPS::~FPS()
 {

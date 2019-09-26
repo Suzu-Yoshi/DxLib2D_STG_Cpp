@@ -10,7 +10,9 @@
 #include "IMAGE.hpp"
 #include "ANIMATION.hpp"	
 
-#include <math.h>
+//########## グローバルオブジェクト ##########
+FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
+KEYDOWN *keydown = new KEYDOWN();							//KEYDOWNクラスのオブジェクトを生成
 
 //########## プログラムで最初に実行される関数 ##########
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -26,14 +28,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetDrawScreen(DX_SCREEN_BACK);								//Draw系関数は裏画面に描画
 
-	FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
-	KEYDOWN *keydown = new KEYDOWN();							//KEYDOWNクラスのオブジェクトを生成
-
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
-	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1,16,16,1,BAKU_1_HEIGHT,BAKU_1_HEIGHT);
-
-
 	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
+
+	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1, 16, 16, 1, BAKU_1_HEIGHT, BAKU_1_HEIGHT, 0.05, false);
+	if (baku->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
 
 	while (TRUE)	//無限ループ
 	{
@@ -46,17 +45,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		fps->Update();				//FPSの処理[更新]
 
 		keydown->IsKeyDown(KEY_INPUT_LEFT);
-		
+
 		//▼▼▼▼▼ゲームのシーンここから▼▼▼▼▼
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
+		
 		jiki->Draw();
 		baku->Draw();
 
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 
-		fps->Draw(0,0);				//FPSの処理[描画]
+		fps->Draw(0, 0);				//FPSの処理[描画]
 
 		ScreenFlip();				//モニタのリフレッシュレートの速さで裏画面を再描画
 

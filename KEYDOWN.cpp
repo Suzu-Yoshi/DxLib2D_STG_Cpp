@@ -50,3 +50,7 @@ KEYDOWN::KEYDOWN()
 KEYDOWN::~KEYDOWN()
 {
 }
+
+
+//########## 外部オブジェクト ##########
+extern KEYDOWN *keydown;

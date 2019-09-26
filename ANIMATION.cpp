@@ -4,6 +4,7 @@
 
 //########## ヘッダーファイル読み込み ##########
 #include "ANIMATION.hpp"
+#include "FPS.hpp"
 
 //########## クラスの定義 ##########
 
@@ -16,7 +17,9 @@
 //引　数：int：画像の縦向きの分割数
 //引　数：int：画像の分割された横の大きさ
 //引　数：int：画像の分割された縦の大きさ
-ANIMATION::ANIMATION(const char *dir, const char *name,int SplitNumALL,int SpritNumX,int SpritNumY,int SpritWidth,int SpritHeight)
+//引　数：double：次の画像に変更する速さ
+//引　数：bool：アニメーションをループするかどうか
+ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int SpritNumX, int SpritNumY, int SpritWidth, int SpritHeight, double changeSpeed, bool IsLoop)
 {
 	//メンバ変数を初期化
 	this->FilePath = "";	//パス
@@ -25,20 +28,28 @@ ANIMATION::ANIMATION(const char *dir, const char *name,int SplitNumALL,int Sprit
 	this->Handle.resize(SplitNumALL);			//resize：vectorの要素数を変更する
 	this->Handle_itr = this->Handle.begin();	//先頭のポインタを入れる
 
-	this->X = 0;			//X位置
-	this->Y = 0;			//Y位置
-	this->Width = 0;		//幅
-	this->Height = 0;		//高さ
+	this->X = 0;					//X位置
+	this->Y = 0;					//Y位置
+	this->Width = 0;				//幅
+	this->Height = 0;				//高さ
+	this->NextChangeSpeed = 0.0;	//画像を変える速さ
 
-	this->IsLoad = false;	//読み込めたか？
+	this->ChangeMaxCnt = (int)(changeSpeed * fps->Getvalue());	//アニメーションするフレームの最大値
+	this->ChangeCnt = 0;										//アニメーションするフレームのカウント
+
+	this->IsAnimeLoop = IsLoop;		//アニメーションはループする？
+
+	this->IsLoad = false;			//読み込めたか？
+
+	this->IsDraw = false;			//描画してはいけない
 
 	//画像を読み込み
-	std::string LoadfilePath;	//画像のファイルパスを作成
+	std::string LoadfilePath;		//画像のファイルパスを作成
 	LoadfilePath += dir;
 	LoadfilePath += name;
 
 	//画像を分割して読み込み
-	LoadDivGraph(LoadfilePath.c_str(), SplitNumALL, SpritNumX, SpritNumY, SpritWidth, SpritHeight,&this->Handle[0]);
+	LoadDivGraph(LoadfilePath.c_str(), SplitNumALL, SpritNumX, SpritNumY, SpritWidth, SpritHeight, &this->Handle[0]);
 
 	if (this->Handle[0] == -1)	//画像が読み込めなかったとき
 	{
@@ -64,7 +75,11 @@ ANIMATION::ANIMATION(const char *dir, const char *name,int SplitNumALL,int Sprit
 		&this->Height		//Heightのアドレスを渡す
 	);
 
+	this->NextChangeSpeed = changeSpeed;	//画像を変える速さ
+
 	this->IsLoad = true;		//読み込めた
+
+	this->IsDraw = true;		//描画してよい
 
 	return;
 }
@@ -75,7 +90,7 @@ ANIMATION::~ANIMATION()
 	//範囲ベースの for ループ
 	//vectorなどのコンテナクラスで使用できる
 	//auto：型推論：コンパイラが初期値から推論して型を決めてくれる
-	for (int handle : this->Handle)	
+	for (int handle : this->Handle)
 	{
 		DeleteGraph(handle);
 	}
@@ -138,6 +153,35 @@ bool ANIMATION::GetIsLoad(void)
 //画像を描画
 void ANIMATION::Draw(void)
 {
-	DrawGraph(this->X, this->Y, *this->Handle_itr, TRUE);	//イテレータ(ポインタ)を使用して描画
+	if (this->IsDraw == true)	//描画して良いなら
+	{
+		DrawGraph(this->X, this->Y, *this->Handle_itr, TRUE);	//イテレータ(ポインタ)を使用して描画
+
+		if (this->ChangeCnt == this->ChangeMaxCnt)	//次の画像を表示する時がきたら
+		{
+			//this->Handle.end()は、最後の要素の１個次のイテレータを返すので、-1している。
+			if (this->Handle_itr == this->Handle.end() - 1)	//イテレータ(ポインタ)が最後の要素のときは
+			{
+				if (this->IsAnimeLoop == false)	//アニメーションをループしないなら
+				{
+					this->IsDraw = false;		//描画をやめる
+				}
+
+				//次回の描画に備えて、先頭の画像に戻しておく
+				this->Handle_itr = this->Handle.begin();	//イテレータ(ポインタ)を要素の最初に戻す
+			}
+			else
+			{
+				this->Handle_itr++;	//次のイテレータ(ポインタ)(次の画像)に移動する
+			}
+
+			this->ChangeCnt = 0;	//カウント初期化
+		}
+		else
+		{
+			this->ChangeCnt++;	//カウントアップ
+		}
+	}
+
 	return;
 }

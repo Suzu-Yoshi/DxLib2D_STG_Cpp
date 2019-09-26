@@ -36,6 +36,12 @@ public:
 	//引　数：int　：値を表示するY位置
 	VOID Draw(int, int);
 
+	//FPS値を取得する
+	int Getvalue(VOID);
+
 	//デストラクタ
 	virtual ~FPS();
 };
+
+//########## 外部オブジェクト ##########
+extern FPS *fps;

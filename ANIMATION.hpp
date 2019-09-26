@@ -31,15 +31,23 @@ private:
 
 	std::vector<int>::iterator Handle_itr;	//ハンドルのイテレータ(ポインタ)
 
-	int X;					//X位置
-	int Y;					//Y位置
-	int Width;				//幅
-	int Height;				//高さ
+	int X;						//X位置
+	int Y;						//Y位置
+	int Width;					//幅
+	int Height;					//高さ
 
-	bool IsLoad;			//読み込めたか？
+	double NextChangeSpeed;	//アニメーションを変更する速さ(秒)
+	int ChangeMaxCnt;			//アニメーションするフレームの最大値
+	int ChangeCnt;				//アニメーションするフレームのカウント
+
+	bool IsAnimeLoop;			//アニメーションはループする？
+
+	bool IsLoad;				//読み込めたか？
+
+	bool IsDraw;				//描画しても良い？
 
 public:
-	ANIMATION(const char *, const char *, int, int, int, int, int );	//コンストラクタ
+	ANIMATION(const char *, const char *, int, int, int, int, int, double,bool);	//コンストラクタ
 	~ANIMATION();	//デストラクタ
 
 	std::string GetFileName(void);	//名前を取得
