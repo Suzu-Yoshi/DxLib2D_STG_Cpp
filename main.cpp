@@ -8,6 +8,7 @@
 #include "FPS.hpp"
 #include "KEYDOWN.hpp"
 #include "IMAGE.hpp"
+#include "ANIMATION.hpp"	
 
 #include <math.h>
 
@@ -29,7 +30,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	KEYDOWN *keydown = new KEYDOWN();							//KEYDOWNクラスのオブジェクトを生成
 
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
-	
+	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1,16,16,1,BAKU_1_HEIGHT,BAKU_1_HEIGHT);
+
+
 	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
 
 	while (TRUE)	//無限ループ
@@ -49,6 +52,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
 		jiki->Draw();
+		baku->Draw();
 
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 
@@ -63,6 +67,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	delete fps;				//FPSを破棄
 	delete keydown;			//keydownを破棄
+	delete baku;
+
 
 	DxLib_End();			//ＤＸライブラリ使用の終了処理
 
