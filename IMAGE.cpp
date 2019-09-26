@@ -25,6 +25,8 @@ IMAGE::IMAGE(const char *dir,const char *name)
 
 	this->IsLoad = false;	//“Ç‚Ýž‚ß‚½‚©H
 
+	this->IsDraw = false;	//•`‰æ‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+
 	//‰æ‘œ‚ð“Ç‚Ýž‚Ý
 	std::string LoadfilePath;	//‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ðì¬
 	LoadfilePath += dir;
@@ -57,6 +59,8 @@ IMAGE::IMAGE(const char *dir,const char *name)
 	);
 
 	this->IsLoad = true;		//“Ç‚Ýž‚ß‚½
+
+	this->IsDraw = true;		//•`‰æ‚µ‚Ä‚æ‚¢
 
 	return;
 }
@@ -119,6 +123,11 @@ bool IMAGE::GetIsLoad(void)
 //‰æ‘œ‚ð•`‰æ
 void IMAGE::Draw(void)
 {
-	DrawGraph(this->X, this->Y, this->Handle, TRUE);
+	if (this->IsDraw == true)	//•`‰æ‚µ‚Ä—Ç‚¢‚È‚ç
+	{
+		DrawGraph(this->X, this->Y, this->Handle, TRUE);
+	}
+
 	return;
 }
+
