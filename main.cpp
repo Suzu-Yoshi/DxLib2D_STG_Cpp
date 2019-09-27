@@ -72,11 +72,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		fps->Wait();				//FPS‚Ìˆ—[‘Ò‚Â]
 	}
 
-	delete jiki;
+	delete jiki;			//jiki‚ğ”jŠü
+	delete baku;			//baku‚ğ”jŠü
+	delete chara;			//chara‚ğ”jŠü
 
 	delete fps;				//FPS‚ğ”jŠü
 	delete keydown;			//keydown‚ğ”jŠü
-	delete baku;
+	
 
 
 	DxLib_End();			//‚c‚wƒ‰ƒCƒuƒ‰ƒŠg—p‚ÌI—¹ˆ—
