@@ -2,24 +2,24 @@
 /* COLLISIONクラス																				   */
 
 //##########ヘッダーファイル読み込み ##########
-#include "Collision.hpp"
+#include "COLLISION.hpp"
 
 //########## クラスの定義 ##########
 
 //コンストラクタ
-Collision::Collision()
+COLLISION::COLLISION()
 {
 	return;
 }
 
 //デストラクタ
-Collision::~Collision()
+COLLISION::~COLLISION()
 {
 	return;
 }
 
 //値を設定
-void Collision::SetValue(int setTop, int setLeft, int setBottom, int setRight)
+void COLLISION::SetValue(int setTop, int setLeft, int setBottom, int setRight)
 {
 	this->top = setTop;			//当たり判定の範囲を上を設定
 	this->left = setLeft;		//当たり判定の範囲を左を設定
@@ -29,9 +29,17 @@ void Collision::SetValue(int setTop, int setLeft, int setBottom, int setRight)
 	return;
 }
 
-//衝突検知
-bool Collision::DetectionCheck(Collision aite)
+//衝突検知チェック
+//引　数：Collision：衝突した相手
+bool COLLISION::DetectionCheck(COLLISION aite)
 {
+	if (this->top < aite.bottom &&
+		this->left < aite.right &&
+		this->bottom > aite.top &&
+		this->right > aite.left)
+	{
+		return true;	//当たった
+	}
 
-	return false;
+	return false;		//当たっていない
 }

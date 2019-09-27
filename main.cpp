@@ -8,7 +8,8 @@
 #include "FPS.hpp"
 #include "KEYDOWN.hpp"
 #include "IMAGE.hpp"
-#include "ANIMATION.hpp"	
+#include "ANIMATION.hpp"
+#include "CHARACTOR.hpp"
 
 //########## グローバルオブジェクト ##########
 FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
@@ -29,10 +30,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);								//Draw系関数は裏画面に描画
 
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
-	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
+	if (jiki->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
 
 	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1, 16, 16, 1, BAKU_1_HEIGHT, BAKU_1_HEIGHT, 0.05, true);
-	if (baku->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
+	if (baku->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
+
+	CHARACTOR * chara = new CHARACTOR(CHARA_SPEED_FAST);
+	if (chara->GetIsCreate() == false) { return -1; };	//キャラクタ作成チェック
+
+	chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
+	chara->SetIsKeyOperation(true);	//キャラクタはキー操作ができる
 
 	while (TRUE)	//無限ループ
 	{
@@ -50,9 +57,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
-		
 		jiki->Draw();
 		baku->Draw();
+
+		chara->Operation(keydown);
+		chara->Draw();
 
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 

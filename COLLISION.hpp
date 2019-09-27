@@ -8,7 +8,7 @@
 
 //########## クラスの定義 ##########
 
-class Collision
+class COLLISION
 {
 private:
 	int top;		//当たり判定の上の位置
@@ -17,10 +17,10 @@ private:
 	int right;		//当たり判定の右の位置
 
 public:
-	Collision();	//コンストラクタ
-	~Collision();	//デストラクタ
+	COLLISION();	//コンストラクタ
+	~COLLISION();	//デストラクタ
 
 	void SetValue(int, int, int, int);	//値を設定
-	bool DetectionCheck(Collision);		//衝突検知
+	bool DetectionCheck(COLLISION);		//衝突検知
 };
 

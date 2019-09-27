@@ -3,7 +3,11 @@
 /* CHARACTORクラス																				   */
 
 //########## ヘッダーファイル読み込み ##########
+#include "DxLib.h"
+#include "main.hpp"
 #include "CHARACTOR.hpp"
+#include "IMAGE.hpp"
+#include "COLLISION.hpp"
 #include "KEYDOWN.hpp"
 
 //########## クラスの定義 ##########
@@ -11,9 +15,10 @@
 //上に動く
 VOID CHARACTOR::MoveUp(VOID)
 {
-	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_UP))
+	if (this->Y - this->Speed >= 0)
 	{
-		DrawString(100, 100, "UP", RGB(255,255,255));
+		this->Y -= this->Speed;
+		this->image->SetY(this->Y);		//画像のY位置を設定しなおす
 	}
 
 	return;
@@ -22,9 +27,10 @@ VOID CHARACTOR::MoveUp(VOID)
 //左に動く
 VOID CHARACTOR::MoveLeft(VOID)
 {
-	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_LEFT))
+	if (this->X - this->Speed >= 0)
 	{
-		DrawString(100, 100, "LEFT", RGB(255, 255, 255));
+		this->X -= this->Speed;
+		this->image->SetX(this->X);		//画像のX位置を設定しなおす
 	}
 
 	return;
@@ -33,9 +39,10 @@ VOID CHARACTOR::MoveLeft(VOID)
 //下に動く
 VOID CHARACTOR::MoveDown(VOID)
 {
-	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_DOWN))
+	if (this->Y + this->Height + this->Speed <= GAME_HEIGHT)
 	{
-		DrawString(100, 100, "DOWN", RGB(255, 255, 255));
+		this->Y += this->Speed;
+		this->image->SetY(this->Y);		//画像のY位置を設定しなおす
 	}
 
 	return;
@@ -44,22 +51,141 @@ VOID CHARACTOR::MoveDown(VOID)
 //右に動く
 VOID CHARACTOR::MoveRight(VOID)
 {
-	if (this->charactor_keydown->IsKeyDown(KEY_INPUT_RIGHT))
+	if (this->X + this->Width + this->Speed <= GAME_WIDTH)
 	{
-		DrawString(100, 100, "RIGHT", RGB(255, 255, 255));
+		this->X += this->Speed;
+		this->image->SetX(this->X);		//画像のX位置を設定しなおす
 	}
 
 	return;
 }
 
 //コンストラクタ
-CHARACTOR::CHARACTOR()
+//引　数：int：速さ
+CHARACTOR::CHARACTOR(int SetSpeed)
 {
-	this->charactor_keydown = new KEYDOWN();
+	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);				//画像を読み込み
+	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return; };	//画像読み込みチェック
+
+	this->Width = this->image->GetWidth();		//幅を設定
+	this->Height = this->image->GetHeight();	//高さを設定
+
+	this->collision = new COLLISION();			//当たり判定を作成
+	this->collision->SetValue(this->X, this->Y, this->Width, this->Height);	//当たり判定を設定
+
+	this->Speed = SetSpeed;	//速さを設定
+	this->IsAlive = true;	//生きている
+
+	this->IsCreate = true;	//作成完了
+
+	return;
 }
 
 //デストラクタ
 CHARACTOR::~CHARACTOR()
 {
-	delete this->charactor_keydown;
+	delete this->collision;
+	delete this->image;
+
+	return;
+}
+
+//速さを取得
+int CHARACTOR::GetSpeed(void)
+{
+	return this->Speed;
+}
+
+//速さを設定
+//引　数：int：速さ
+void CHARACTOR::SetSpeed(int hayasa)
+{
+	this->Speed = hayasa;
+	return;
+}
+
+//生きているか取得
+bool CHARACTOR::GetIsAlive(void)
+{
+	return this->IsAlive;
+}
+
+//生きているか設定
+//引　数：bool：生きている=true or 死んでいる=false
+void CHARACTOR::SetIsAlive(bool alive)
+{
+	this->IsAlive = alive;
+	return;
+}
+
+//X位置とY位置を設定
+void CHARACTOR::SetX_Y(int SetX, int SetY)
+{
+	this->X = SetX;							//X位置を設定
+	this->image->SetX(this->X);				//描画のX位置を設定
+
+	this->Y = SetY;							//Y位置を設定
+	this->image->SetY(this->Y);				//描画のY位置を設定
+
+	return;
+}
+
+//作成できたか取得
+bool CHARACTOR::GetIsCreate(void)
+{
+	return this->IsCreate;
+}
+
+//キーボードで操作ができるか設定する
+void CHARACTOR::SetIsKeyOperation(bool isOpe)
+{
+	this->IsKeyOperation = isOpe;
+	return;
+}
+
+//幅を取得
+int CHARACTOR::GetWidth(void)
+{
+	return this->Width;
+}
+
+//高さを取得
+int CHARACTOR::GetHeight(void)
+{
+	return this->Height;
+}
+
+//操作
+void CHARACTOR::Operation(KEYDOWN *keydown)
+{
+	if (keydown->IsKeyDown(KEY_INPUT_UP))			//上キーを押しているとき
+	{
+		this->MoveUp();
+	}
+	else if (keydown->IsKeyDown(KEY_INPUT_DOWN))	//下キーを押しているとき
+	{
+		this->MoveDown();
+	}
+
+	if (keydown->IsKeyDown(KEY_INPUT_LEFT))			//左キーを押しているとき
+	{
+		this->MoveLeft();
+	}
+	else if (keydown->IsKeyDown(KEY_INPUT_RIGHT))	//右キーを押しているとき
+	{
+		this->MoveRight();
+	}
+
+	return;
+}
+
+//描画
+void CHARACTOR::Draw(void)
+{
+	if (this->IsAlive == true)	//生きていれば
+	{
+		this->image->Draw();	//画像を描画
+	}
+
+	return;
 }
