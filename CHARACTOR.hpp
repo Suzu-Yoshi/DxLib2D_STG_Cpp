@@ -6,6 +6,8 @@
 
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
+#include "IMAGE.hpp"
+#include "ANIMATION.hpp"
 #include "KEYDOWN.hpp"
 
 //########## マクロ定義 ##########
@@ -18,26 +20,14 @@
 class CHARACTOR
 {
 private:
-	KEYDOWN *charactor_keydown;		//KEYDOWNのインスタンス
+
 
 public:
-	char FilePath[PATH_MAX];		//キャラクターのファイルパス
-	
-	int Handle[HANDLE_MAX];			//キャラクターのハンドル
-	int NowHandleNum;				//現在のハンドル
-	int NowHandleCnt;				//現在のハンドルカウント
-	int NowHandleCntMAX;			//現在のハンドルカウントMAX
-
 	int X;							//キャラクターのX位置
 	int Y;							//キャラクターのY位置
 	int Width;						//キャラクターの幅
 	int Height;						//キャラクターの高さ
 
-	int atariTop;					//キャラクターの当たり判定（上）
-	int atariLeft;					//キャラクターの当たり判定（左）
-	int atariBottom;				//キャラクターの当たり判定（下）
-	int atariRight;					//キャラクターの当たり判定（右）
-	
 	int Speed;						//速度
 
 	BOOL IsView;					//表示するか

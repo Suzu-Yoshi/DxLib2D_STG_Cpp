@@ -43,7 +43,7 @@ IMAGE::IMAGE(const char *dir,const char *name)
 		MessageBox(
 			NULL, 
 			ErroeMsg.c_str(),	//char * ‚ð•Ô‚·
-			TEXT(IMAGE_ERROR_TTILE),
+			TEXT(IMAGE_ERROR_TITLE),
 			MB_OK);
 
 		return;

@@ -15,7 +15,7 @@
 #define MY_IMG_NAME_JIKI_2	R"(jiki_2_mini.png)"		//自機２の名前
 
 //########## マクロ定義：エラーメッセージ##########
-#define IMAGE_ERROR_TTILE "IMAGE_ERROR"					//エラータイトル
+#define IMAGE_ERROR_TITLE "IMAGE_ERROR"					//エラータイトル
 #define IMAGE_ERROR_MSG	"画像が読み込めませんでした"	//エラーメッセージ
 
 //########## クラスの定義 ##########
