@@ -35,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1, 16, 16, 1, BAKU_1_HEIGHT, BAKU_1_HEIGHT, 0.05, true);
 	if (baku->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
 
-	CHARACTOR * chara = new CHARACTOR(CHARA_SPEED_FAST);
+	CHARACTOR * chara = new CHARACTOR(CHARA_SPEED_SLOW);
 	if (chara->GetIsCreate() == false) { return -1; };	//キャラクタ作成チェック
 
 	chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示

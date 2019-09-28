@@ -69,12 +69,12 @@ CHARACTOR::CHARACTOR(int SetSpeed)
 
 	this->Width = this->image->GetWidth();		//•‚ðÝ’è
 	this->Height = this->image->GetHeight();	//‚‚³‚ðÝ’è
+	this->Speed = SetSpeed;	//‘¬‚³‚ðÝ’è
+	this->IsAlive = true;	//¶‚«‚Ä‚¢‚é
 
 	this->collision = new COLLISION();			//“–‚½‚è”»’è‚ðì¬
 	this->collision->SetValue(this->X, this->Y, this->Width, this->Height);	//“–‚½‚è”»’è‚ðÝ’è
-
-	this->Speed = SetSpeed;	//‘¬‚³‚ðÝ’è
-	this->IsAlive = true;	//¶‚«‚Ä‚¢‚é
+	this->collision->SetIsDraw(true);			//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ‚·‚é
 
 	this->IsCreate = true;	//ì¬Š®—¹
 
@@ -155,6 +155,18 @@ int CHARACTOR::GetHeight(void)
 	return this->Height;
 }
 
+//‰E‚ÌˆÊ’u‚ðŽæ“¾
+int CHARACTOR::GetRight(void)
+{
+	return this->X + this->Width;
+}
+
+//‰º‚ÌˆÊ’u‚ðŽæ“¾
+int CHARACTOR::GetBottom(void)
+{
+	return this->Y + this->Height;
+}
+
 //‘€ì
 void CHARACTOR::Operation(KEYDOWN *keydown)
 {
@@ -176,6 +188,9 @@ void CHARACTOR::Operation(KEYDOWN *keydown)
 		this->MoveRight();
 	}
 
+	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ðXV
+	this->collision->SetValue(this->X, this->Y, this->GetRight(), this->GetBottom());
+
 	return;
 }
 
@@ -184,7 +199,8 @@ void CHARACTOR::Draw(void)
 {
 	if (this->IsAlive == true)	//¶‚«‚Ä‚¢‚ê‚Î
 	{
-		this->image->Draw();	//‰æ‘œ‚ð•`‰æ
+		this->image->Draw();		//‰æ‘œ‚ð•`‰æ
+		this->collision->Draw(GetColor(255,255,0));	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ
 	}
 
 	return;

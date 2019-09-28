@@ -60,6 +60,9 @@ public:
 	int GetWidth(void);				//•‚ğæ“¾
 	int GetHeight(void);			//‚‚³‚ğæ“¾
 
+	int GetRight(void);				//‰E‚ÌˆÊ’u‚ğæ“¾
+	int GetBottom(void);			//‰º‚ÌˆÊ’u‚ğæ“¾
+
 	void Operation(KEYDOWN *);		//‘€ì
 	void Draw(void);				//•`‰æ
 
