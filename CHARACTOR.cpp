@@ -62,14 +62,13 @@ VOID CHARACTOR::MoveRight(VOID)
 
 //コンストラクタ
 //引　数：int：速さ
-CHARACTOR::CHARACTOR(int SetSpeed)
+CHARACTOR::CHARACTOR()
 {
 	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);				//画像を読み込み
 	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return; };	//画像読み込みチェック
 
 	this->Width = this->image->GetWidth();		//幅を設定
 	this->Height = this->image->GetHeight();	//高さを設定
-	this->Speed = SetSpeed;	//速さを設定
 	this->IsAlive = true;	//生きている
 
 	this->collision = new COLLISION();			//当たり判定を作成

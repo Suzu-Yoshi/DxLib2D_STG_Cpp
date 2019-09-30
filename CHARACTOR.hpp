@@ -14,9 +14,9 @@
 //########## マクロ定義 ##########
 
 //移動速度
-#define CHARA_SPEED_SLOW	1
-#define CHARA_SPEED_FAST	4
-#define CHARA_SPEED_STAR	8
+#define CHARA_SPEED_1_SLOW	1
+#define CHARA_SPEED_2_FAST	4
+#define CHARA_SPEED_3_STAR	8
 
 //########## クラスの定義 ##########
 
@@ -43,7 +43,7 @@ public:
 	VOID MoveDown(VOID);			//下に動く
 	VOID MoveRight(VOID);			//右に動く
 
-	CHARACTOR(int);				//コンストラクタ
+	CHARACTOR();					//コンストラクタ
 	virtual ~CHARACTOR();			//デストラクタ
 
 	int GetSpeed(void);				//速さを取得
