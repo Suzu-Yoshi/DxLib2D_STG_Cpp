@@ -19,8 +19,8 @@ private:
 	bool IsDraw;	//当たり判定の範囲を描画するか？
 
 public:
-	COLLISION();	//コンストラクタ
-	~COLLISION();	//デストラクタ
+	COLLISION();			//コンストラクタ
+	virtual ~COLLISION();	//デストラクタ
 
 	void SetValue(int, int, int, int);	//値を設定
 	bool DetectionCheck(COLLISION);		//衝突検知

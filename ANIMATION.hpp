@@ -48,7 +48,7 @@ private:
 
 public:
 	ANIMATION(const char *, const char *, int, int, int, int, int, double,bool);	//コンストラクタ
-	~ANIMATION();	//デストラクタ
+	virtual ~ANIMATION();	//デストラクタ
 
 	std::string GetFileName(void);	//名前を取得
 
