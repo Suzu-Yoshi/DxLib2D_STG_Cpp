@@ -14,3 +14,8 @@ LOG::LOG()
 LOG::~LOG()
 {
 }
+
+void LOG::SetIsWriteLog(bool set)
+{
+
+}
