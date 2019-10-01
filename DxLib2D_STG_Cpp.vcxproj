@@ -25,6 +25,7 @@
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="IMAGE.cpp" />
     <ClCompile Include="KEYDOWN.cpp" />
+    <ClCompile Include="LOG.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PLAYER.cpp" />
   </ItemGroup>
@@ -35,6 +36,7 @@
     <ClInclude Include="FPS.hpp" />
     <ClInclude Include="IMAGE.hpp" />
     <ClInclude Include="KEYDOWN.hpp" />
+    <ClInclude Include="LOG.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="PLAYER.hpp" />
   </ItemGroup>
