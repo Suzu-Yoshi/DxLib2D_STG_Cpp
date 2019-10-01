@@ -19,7 +19,7 @@
 //引　数：int：画像の分割された縦の大きさ
 //引　数：double：次の画像に変更する速さ
 //引　数：bool：アニメーションをループするかどうか
-ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int SpritNumX, int SpritNumY, int SpritWidth, int SpritHeight, double changeSpeed, bool IsLoop)
+ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed, bool IsLoop)
 {
 	//メンバ変数を初期化
 	this->FilePath = "";	//パス
@@ -49,17 +49,17 @@ ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int Spr
 	LoadfilePath += name;
 
 	//画像を分割して読み込み
-	LoadDivGraph(LoadfilePath.c_str(), SplitNumALL, SpritNumX, SpritNumY, SpritWidth, SpritHeight, &this->Handle[0]);
+	LoadDivGraph(LoadfilePath.c_str(), SplitNumALL, SpritNumX, SplitNumY, SplitWidth, SplitHeight, &this->Handle[0]);
 
 	if (this->Handle[0] == -1)	//画像が読み込めなかったとき
 	{
-		std::string ErroeMsg(ANIMATION_ERROR_MSG);	//エラーメッセージ作成
-		ErroeMsg += TEXT('\n');						//改行
-		ErroeMsg += LoadfilePath;					//画像のパス
+		std::string ErrorMsg(ANIMATION_ERROR_MSG);	//エラーメッセージ作成
+		ErrorMsg += TEXT('\n');						//改行
+		ErrorMsg += LoadfilePath;					//画像のパス
 
 		MessageBox(
 			NULL,
-			ErroeMsg.c_str(),	//char * を返す
+			ErrorMsg.c_str(),	//char * を返す
 			TEXT(ANIMATION_ERROR_TTILE),
 			MB_OK);
 
