@@ -16,10 +16,21 @@
 //########## クラスdの定義 ##########
 class PLAYER : public CHARACTOR
 {
-	
+private:
+	std::vector<TAMA> tama;					//弾クラス
+	std::vector<TAMA>::iterator tama_itr;	//ハンドルのイテレータ(ポインタ)
+
+
 
 public:
 	PLAYER();			//コンストラクタ
 	virtual ~PLAYER();	//デストラクタ
+
+	void Operation(KEYDOWN *);	//操作
+
+	void CreateTama(int, int);	//弾を作成
+	void DrawTama(void);		//弾を描画
+	void DeleteTama(void);		//弾を削除
+
 };
 

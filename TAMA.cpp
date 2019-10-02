@@ -10,8 +10,9 @@
 //コンストラクタ
 //引　数：int：弾のタイプ
 //引　数：int：弾の色
-TAMA::TAMA(int type, int color)
+TAMA::TAMA()
 {
+	int type, color;
 	std::string SelectTamaPath;	//弾の画像のパス
 
 	int SplitNumALL;
@@ -25,16 +26,17 @@ TAMA::TAMA(int type, int color)
 	switch (type)
 	{
 	case TAMA_TYPE_TAMA:
+
+		SplitNumALL = 4;
+		SpritNumX = 4;
+		SplitNumY = 1;
+		SplitWidth = TAMA_WIDTH;
+		SplitHeight = TAMA_HEIGHT;
+		changeSpeed = TAMA_SPEED;
+		IsLoop = TRUE;
+
 		switch (color)
 		{
-			SplitNumALL = 4;
-			SpritNumX = 4;
-			SplitNumY = 1;
-			SplitWidth = TAMA_WIDTH;
-			SplitHeight = TAMA_HEIGHT;
-			changeSpeed = TAMA_SPEED;
-			IsLoop = TRUE;
-
 		case TAMA_COLOR_AKA:
 			SelectTamaPath = MY_ANIME_NAME_TAMA_AKA;
 			break;
@@ -57,6 +59,15 @@ TAMA::TAMA(int type, int color)
 		break;
 
 	case TAMA_TYPE_HISI:
+
+		SplitNumALL = 4;
+		SpritNumX = 4;
+		SplitNumY = 1;
+		SplitWidth = TAMA_WIDTH;
+		SplitHeight = TAMA_HEIGHT;
+		changeSpeed = TAMA_SPEED;
+		IsLoop = TRUE;
+
 		switch (color)
 		{
 		case TAMA_COLOR_AKA:
@@ -81,6 +92,15 @@ TAMA::TAMA(int type, int color)
 		break;
 
 	case TAMA_TYPE_MARU:
+
+		SplitNumALL = 4;
+		SpritNumX = 4;
+		SplitNumY = 1;
+		SplitWidth = TAMA_WIDTH;
+		SplitHeight = TAMA_HEIGHT;
+		changeSpeed = TAMA_SPEED;
+		IsLoop = TRUE;
+
 		switch (color)
 		{
 		case TAMA_COLOR_AKA:
@@ -105,6 +125,15 @@ TAMA::TAMA(int type, int color)
 		break;
 
 	case TAMA_TYPE_SIROMARU:
+
+		SplitNumALL = 4;
+		SpritNumX = 4;
+		SplitNumY = 1;
+		SplitWidth = TAMA_WIDTH;
+		SplitHeight = TAMA_HEIGHT;
+		changeSpeed = TAMA_SPEED;
+		IsLoop = TRUE;
+
 		switch (color)
 		{
 		case TAMA_COLOR_AKA:
@@ -129,6 +158,15 @@ TAMA::TAMA(int type, int color)
 		break;
 
 	case TAMA_TYPE_TATEMARU:
+
+		SplitNumALL = 4;
+		SpritNumX = 4;
+		SplitNumY = 1;
+		SplitWidth = TAMA_WIDTH;
+		SplitHeight = TAMA_HEIGHT;
+		changeSpeed = TAMA_SPEED;
+		IsLoop = TRUE;
+
 		switch (color)
 		{
 		case TAMA_COLOR_AKA:
@@ -153,14 +191,6 @@ TAMA::TAMA(int type, int color)
 		break;
 	}
 
-	SplitNumALL = 4;
-	SpritNumX = 4;
-	SplitNumY = 1;
-	SplitWidth = TAMA_WIDTH;
-	SplitHeight = TAMA_HEIGHT;
-	changeSpeed = TAMA_SPEED;
-	IsLoop = TRUE;
-
 	this->anime = new ANIMATION(
 		MY_ANIME_DIR_TAMA, 
 		SelectTamaPath.c_str(),
@@ -176,6 +206,12 @@ TAMA::TAMA(int type, int color)
 	this->IsEnbled = false;	//弾を無効化
 
 	return;
+}
+
+// コピーコンストラクタ
+TAMA::TAMA(const TAMA& tama)
+{
+
 }
 
 //デストラクタ

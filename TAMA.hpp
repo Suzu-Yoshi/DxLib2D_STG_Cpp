@@ -91,9 +91,14 @@ private:
 	bool IsEnbled;			//弾が有効か
 
 public:
-	TAMA(int, int);				//コンストラクタ
+	TAMA();
+	//TAMA();				//コンストラクタ
+	TAMA(const TAMA&);			//コピーコンストラクタ
+	
 	virtual ~TAMA();			//デストラクタ
 	
+
+
 	void SetIsEnbled(bool);		//描画を設定
 	void SetX_Y(int,int);		//X位置とY位置を設定
 
