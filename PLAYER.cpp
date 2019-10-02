@@ -12,13 +12,16 @@ PLAYER::PLAYER()
 {
 	this->tama.resize(1);					//resize：vectorの要素数を変更する
 	this->tama_itr = this->tama.begin();	//先頭のポインタを入れる
-
+	
 	return;
 }
 
 //デストラクタ
 PLAYER::~PLAYER()
 {
+	//vectorのメモリ解放を行う
+	std::vector<TAMA> v;	//空のvectorを作成する
+	this->tama.swap(v);		//空と中身を入れ替える
 
 	return;
 }
@@ -28,27 +31,34 @@ void PLAYER::Operation(KEYDOWN *keydown)
 {
 	if (keydown->IsKeyDown(KEY_INPUT_SPACE))			//スペースキーを押しているとき
 	{
-		this->CreateTama(TAMA_TYPE_TAMA, TAMA_COLOR_AKA);
+		this->CreateTama();
 	}
 
 	return;
 }
 
 //弾を作成
-void PLAYER::CreateTama(int type, int color)
+void PLAYER::CreateTama(void)
 {
-	this->tama.push_back(TAMA());
-
+	this->tama.emplace_back(TAMA());	//要素を追加
+	
+	return;
 }
 
 //弾を描画
 void PLAYER::DrawTama(void)
 {
-
+	for (TAMA for_tama : this->tama)
+	{
+		for_tama.Draw();	//描画
+	}
 }
 
 //弾を削除
-void PLAYER::DeleteTama(void)
+void PLAYER::DeleteTama(std::vector<TAMA>::iterator itr)
 {
-
+	if (!this->tama.empty())	//ベクターの要素が空でなければ
+	{
+		this->tama.erase(itr);	//要素を追加
+	}
 }

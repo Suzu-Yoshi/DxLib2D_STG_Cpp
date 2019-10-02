@@ -5,12 +5,7 @@
 #pragma once
 
 //########## ヘッダーファイル読み込み ##########
-#include "DxLib.h"
-#include "FPS.hpp"
-#include "KEYDOWN.hpp"
-#include "IMAGE.hpp"
-#include "ANIMATION.hpp"
-#include "CHARACTOR.hpp"
+
 
 //########## マクロ定義 ##########
 #define GAME_WIDTH	800		//画面の横の大きさ

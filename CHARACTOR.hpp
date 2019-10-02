@@ -6,11 +6,11 @@
 
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
-#include "ANIMATION.hpp"
+#include "main.hpp"
+#include "KEYDOWN.hpp"
 #include "IMAGE.hpp"
 #include "COLLISION.hpp"
-#include "KEYDOWN.hpp"
-#include "main.hpp"
+
 
 //########## マクロ定義 ##########
 

@@ -7,217 +7,42 @@
 
 //########## クラスの定義 ##########
 
+int i = 0;
+
 //コンストラクタ
-//引　数：int：弾のタイプ
-//引　数：int：弾の色
 TAMA::TAMA()
 {
-	int type, color;
-	std::string SelectTamaPath;	//弾の画像のパス
+	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_SPEED);
 
-	int SplitNumALL;
-	int SpritNumX;
-	int SplitNumY;
-	int SplitWidth;
-	int SplitHeight;
-	double changeSpeed;
-	bool IsLoop;
+	return;
+}
 
-	switch (type)
-	{
-	case TAMA_TYPE_TAMA:
-
-		SplitNumALL = 4;
-		SpritNumX = 4;
-		SplitNumY = 1;
-		SplitWidth = TAMA_WIDTH;
-		SplitHeight = TAMA_HEIGHT;
-		changeSpeed = TAMA_SPEED;
-		IsLoop = TRUE;
-
-		switch (color)
-		{
-		case TAMA_COLOR_AKA:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_AKA;
-			break;
-		case TAMA_COLOR_AO:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_AO;
-			break;
-		case TAMA_COLOR_MIDORI:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_MIDORI;
-			break;
-		case TAMA_COLOR_MURASAKI:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_MURASAKI;
-			break;
-		case TAMA_COLOR_ORANGE:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_ORANGE;
-			break;
-		case TAMA_COLOR_PINK:
-			SelectTamaPath = MY_ANIME_NAME_TAMA_PINK;
-			break;
-		}
-		break;
-
-	case TAMA_TYPE_HISI:
-
-		SplitNumALL = 4;
-		SpritNumX = 4;
-		SplitNumY = 1;
-		SplitWidth = TAMA_WIDTH;
-		SplitHeight = TAMA_HEIGHT;
-		changeSpeed = TAMA_SPEED;
-		IsLoop = TRUE;
-
-		switch (color)
-		{
-		case TAMA_COLOR_AKA:
-			SelectTamaPath = MY_ANIME_NAME_HISI_AKA;
-			break;
-		case TAMA_COLOR_AO:
-			SelectTamaPath = MY_ANIME_NAME_HISI_AO;
-			break;
-		case TAMA_COLOR_MIDORI:
-			SelectTamaPath = MY_ANIME_NAME_HISI_MIDORI;
-			break;
-		case TAMA_COLOR_MURASAKI:
-			SelectTamaPath = MY_ANIME_NAME_HISI_MURASAKI;
-			break;
-		case TAMA_COLOR_ORANGE:
-			SelectTamaPath = MY_ANIME_NAME_HISI_ORANGE;
-			break;
-		case TAMA_COLOR_PINK:
-			SelectTamaPath = MY_ANIME_NAME_HISI_PINK;
-			break;
-		}
-		break;
-
-	case TAMA_TYPE_MARU:
-
-		SplitNumALL = 4;
-		SpritNumX = 4;
-		SplitNumY = 1;
-		SplitWidth = TAMA_WIDTH;
-		SplitHeight = TAMA_HEIGHT;
-		changeSpeed = TAMA_SPEED;
-		IsLoop = TRUE;
-
-		switch (color)
-		{
-		case TAMA_COLOR_AKA:
-			SelectTamaPath = MY_ANIME_NAME_MARU_AKA;
-			break;
-		case TAMA_COLOR_AO:
-			SelectTamaPath = MY_ANIME_NAME_MARU_AO;
-			break;
-		case TAMA_COLOR_MIDORI:
-			SelectTamaPath = MY_ANIME_NAME_MARU_MIDORI;
-			break;
-		case TAMA_COLOR_MURASAKI:
-			SelectTamaPath = MY_ANIME_NAME_MARU_MURASAKI;
-			break;
-		case TAMA_COLOR_ORANGE:
-			SelectTamaPath = MY_ANIME_NAME_MARU_ORANGE;
-			break;
-		case TAMA_COLOR_PINK:
-			SelectTamaPath = MY_ANIME_NAME_MARU_PINK;
-			break;
-		}
-		break;
-
-	case TAMA_TYPE_SIROMARU:
-
-		SplitNumALL = 4;
-		SpritNumX = 4;
-		SplitNumY = 1;
-		SplitWidth = TAMA_WIDTH;
-		SplitHeight = TAMA_HEIGHT;
-		changeSpeed = TAMA_SPEED;
-		IsLoop = TRUE;
-
-		switch (color)
-		{
-		case TAMA_COLOR_AKA:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_AKA;
-			break;
-		case TAMA_COLOR_AO:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_AO;
-			break;
-		case TAMA_COLOR_MIDORI:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_MIDORI;
-			break;
-		case TAMA_COLOR_MURASAKI:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_MURASAKI;
-			break;
-		case TAMA_COLOR_ORANGE:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_ORANGE;
-			break;
-		case TAMA_COLOR_PINK:
-			SelectTamaPath = MY_ANIME_NAME_SIROMARU_PINK;
-			break;
-		}
-		break;
-
-	case TAMA_TYPE_TATEMARU:
-
-		SplitNumALL = 4;
-		SpritNumX = 4;
-		SplitNumY = 1;
-		SplitWidth = TAMA_WIDTH;
-		SplitHeight = TAMA_HEIGHT;
-		changeSpeed = TAMA_SPEED;
-		IsLoop = TRUE;
-
-		switch (color)
-		{
-		case TAMA_COLOR_AKA:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_AKA;
-			break;
-		case TAMA_COLOR_AO:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_AO;
-			break;
-		case TAMA_COLOR_MIDORI:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_MIDORI;
-			break;
-		case TAMA_COLOR_MURASAKI:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_MURASAKI;
-			break;
-		case TAMA_COLOR_ORANGE:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_ORANGE;
-			break;
-		case TAMA_COLOR_PINK:
-			SelectTamaPath = MY_ANIME_NAME_TATEMARU_PINK;
-			break;
-		}
-		break;
-	}
-
-	this->anime = new ANIMATION(
-		MY_ANIME_DIR_TAMA, 
-		SelectTamaPath.c_str(),
+//弾のアニメーションを作成
+void TAMA::SetAnime(const char *dir , const char *path,int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed)
+{
+	this->Anime = new ANIMATION(
+		dir,
+		path,
 		SplitNumALL,
 		SpritNumX,
 		SplitNumY,
 		SplitWidth,
 		SplitHeight,
 		changeSpeed,
-		IsLoop);	//弾を生成
+		true);	//弾を生成
 
-	this->SetX_Y(0, 0);		//位置を設定
-	this->IsEnbled = false;	//弾を無効化
+	this->SetX_Y(10*i++,10);		//位置を設定
+	this->IsEnbled = true;	//弾を無効化
 
 	return;
 }
-
-// コピーコンストラクタ
-TAMA::TAMA(const TAMA& tama)
-{
-
-}
-
 //デストラクタ
 TAMA::~TAMA()
 {
-	delete this->anime;
+	if (!this->Anime)
+	{
+		delete this->Anime;
+	}
 	return;
 }
 
@@ -230,7 +55,11 @@ void TAMA::SetIsEnbled(bool set)
 //X位置とY位置を設定
 void TAMA::SetX_Y(int SetX, int SetY)
 {
-	this->X = SetX; this->Y = SetY; return;
+	this->X = SetX; this->Y = SetY;
+	this->Anime->SetX(this->X);
+	this->Anime->SetY(this->Y);
+	
+	return;
 }
 
 //画像を描画
@@ -238,6 +67,6 @@ void TAMA::Draw(void)
 {
 	if (this->IsEnbled == true)	//描画して良いなら
 	{
-		this->anime->Draw();
+		this->Anime->Draw();
 	}
 }

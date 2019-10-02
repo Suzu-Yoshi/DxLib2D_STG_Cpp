@@ -3,7 +3,14 @@
 /* C++でSTG																						　 */
 
 //##########ヘッダーファイル読み込み ##########
+#include "DxLib.h"
 #include "main.hpp"
+#include "FPS.hpp"
+#include "KEYDOWN.hpp"
+#include "IMAGE.hpp"
+#include "ANIMATION.hpp"
+#include "CHARACTOR.hpp"
+#include "PLAYER.hpp"
 
 //########## グローバルオブジェクト ##########
 FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
@@ -36,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	chara->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
 	chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
 
-	
+	PLAYER *player = new PLAYER();
 
 	while (TRUE)	//無限ループ
 	{
@@ -60,6 +67,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		chara->Operation(keydown);
 		chara->Draw();
 
+		player->Operation(keydown);
+		player->Draw();
+		player->DrawTama();
+
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 
 		fps->Draw(0, 0);				//FPSの処理[描画]
@@ -68,6 +79,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		fps->Wait();				//FPSの処理[待つ]
 	}
+
+	delete player;
 
 	delete jiki;			//jikiを破棄
 	delete baku;			//bakuを破棄

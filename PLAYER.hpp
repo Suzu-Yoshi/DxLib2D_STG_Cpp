@@ -7,13 +7,13 @@
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "main.hpp"
-#include "CHARACTOR.hpp"
 #include "IMAGE.hpp"
 #include "COLLISION.hpp"
 #include "KEYDOWN.hpp"
 #include "TAMA.hpp"
+#include "CHARACTOR.hpp"
 
-//########## クラスdの定義 ##########
+//########## クラスの定義 ##########
 class PLAYER : public CHARACTOR
 {
 private:
@@ -28,9 +28,9 @@ public:
 
 	void Operation(KEYDOWN *);	//操作
 
-	void CreateTama(int, int);	//弾を作成
+	void CreateTama(void);		//弾を作成
 	void DrawTama(void);		//弾を描画
-	void DeleteTama(void);		//弾を削除
+	void DeleteTama(std::vector<TAMA>::iterator);		//弾を削除
 
 };
 

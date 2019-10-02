@@ -81,7 +81,7 @@
 class TAMA
 {
 private:
-	ANIMATION *anime;		//弾のアニメーション
+	ANIMATION *Anime;		//弾のアニメーション
 	int ATK;				//攻撃力
 	int Speed;				//速さ
 
@@ -91,16 +91,12 @@ private:
 	bool IsEnbled;			//弾が有効か
 
 public:
-	TAMA();
-	//TAMA();				//コンストラクタ
-	TAMA(const TAMA&);			//コピーコンストラクタ
-	
+	TAMA();						//コンストラクタ
 	virtual ~TAMA();			//デストラクタ
-	
 
-
+	void SetAnime(const char *, const char *,int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
-	void SetX_Y(int,int);		//X位置とY位置を設定
+	void SetX_Y(int, int);		//X位置とY位置を設定
 
 	void Draw(void);			//画像を描画
 };
