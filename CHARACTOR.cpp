@@ -3,12 +3,7 @@
 /* CHARACTORクラス																				   */
 
 //########## ヘッダーファイル読み込み ##########
-#include "DxLib.h"
-#include "main.hpp"
 #include "CHARACTOR.hpp"
-#include "IMAGE.hpp"
-#include "COLLISION.hpp"
-#include "KEYDOWN.hpp"
 
 //########## クラスの定義 ##########
 

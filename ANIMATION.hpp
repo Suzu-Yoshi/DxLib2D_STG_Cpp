@@ -6,6 +6,8 @@
 
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
+#include "FPS.hpp"
+
 #include <string>
 #include <vector>
 

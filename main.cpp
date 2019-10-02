@@ -3,13 +3,7 @@
 /* C++でSTG																						　 */
 
 //##########ヘッダーファイル読み込み ##########
-#include "DxLib.h"
 #include "main.hpp"
-#include "FPS.hpp"
-#include "KEYDOWN.hpp"
-#include "IMAGE.hpp"
-#include "ANIMATION.hpp"
-#include "CHARACTOR.hpp"
 
 //########## グローバルオブジェクト ##########
 FPS *fps = new FPS(GAME_FPS_SPEED);							//FPSクラスのオブジェクトを生成
@@ -41,6 +35,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
 	chara->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
 	chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
+
+	
 
 	while (TRUE)	//無限ループ
 	{

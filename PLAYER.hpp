@@ -11,11 +11,13 @@
 #include "IMAGE.hpp"
 #include "COLLISION.hpp"
 #include "KEYDOWN.hpp"
-#include "PLAYER.hpp"
+#include "TAMA.hpp"
 
-//########## クラスの定義 ##########
+//########## クラスdの定義 ##########
 class PLAYER : public CHARACTOR
 {
+	
+
 public:
 	PLAYER();			//コンストラクタ
 	virtual ~PLAYER();	//デストラクタ
