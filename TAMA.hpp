@@ -98,5 +98,5 @@ public:
 	void SetIsEnbled(bool);		//•`‰æ‚ğİ’è
 	void SetX_Y(int, int);		//XˆÊ’u‚ÆYˆÊ’u‚ğİ’è
 
-	void Draw(void);			//‰æ‘œ‚ğ•`‰æ
+	void Draw();				//‰æ‘œ‚ğ•`‰æ
 };

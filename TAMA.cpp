@@ -18,7 +18,7 @@ TAMA::TAMA()
 }
 
 //’e‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ðì¬
-void TAMA::SetAnime(const char *dir , const char *path,int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed)
+void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed)
 {
 	this->Anime = new ANIMATION(
 		dir,
@@ -31,7 +31,7 @@ void TAMA::SetAnime(const char *dir , const char *path,int SplitNumALL, int Spri
 		changeSpeed,
 		true);	//’e‚ð¶¬
 
-	this->SetX_Y(10*i++,10);		//ˆÊ’u‚ðÝ’è
+	this->SetX_Y(10 * i++, 10);		//ˆÊ’u‚ðÝ’è
 	this->IsEnbled = true;	//’e‚ð–³Œø‰»
 
 	return;
@@ -56,9 +56,7 @@ void TAMA::SetIsEnbled(bool set)
 void TAMA::SetX_Y(int SetX, int SetY)
 {
 	this->X = SetX; this->Y = SetY;
-	this->Anime->SetX(this->X);
-	this->Anime->SetY(this->Y);
-	
+
 	return;
 }
 
@@ -67,6 +65,6 @@ void TAMA::Draw(void)
 {
 	if (this->IsEnbled == true)	//•`‰æ‚µ‚Ä—Ç‚¢‚È‚ç
 	{
-		this->Anime->Draw();
+		this->Anime->Draw(this->X, this->Y);
 	}
 }

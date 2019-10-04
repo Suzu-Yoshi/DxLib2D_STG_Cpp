@@ -27,20 +27,13 @@ ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int Spr
 	this->Handle.resize(SplitNumALL);			//resize：vectorの要素数を変更する
 	this->Handle_itr = this->Handle.begin();	//先頭のポインタを入れる
 
-	this->X = 0;					//X位置
-	this->Y = 0;					//Y位置
-	this->Width = 0;				//幅
-	this->Height = 0;				//高さ
-	this->NextChangeSpeed = 0.0;	//画像を変える速さ
-
 	this->ChangeMaxCnt = (int)(changeSpeed * fps->Getvalue());	//アニメーションするフレームの最大値
 	this->ChangeCnt = 0;										//アニメーションするフレームのカウント
 
 	this->IsAnimeLoop = IsLoop;		//アニメーションはループする？
+	this->IsAnimeStop = false;		//アニメーションを動かす
 
 	this->IsLoad = false;			//読み込めたか？
-
-	this->IsDraw = false;			//描画してはいけない
 
 	//画像を読み込み
 	std::string LoadfilePath;		//画像のファイルパスを作成
@@ -78,8 +71,6 @@ ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int Spr
 
 	this->IsLoad = true;		//読み込めた
 
-	this->IsDraw = true;		//描画してよい
-
 	return;
 }
 
@@ -107,30 +98,6 @@ std::string ANIMATION::GetFileName(void)
 	return this->FileName;
 }
 
-//X位置を設定
-void ANIMATION::SetX(int numX)
-{
-	this->X = numX;	return;
-}
-
-//Y位置を設定
-void ANIMATION::SetY(int numY)
-{
-	this->Y = numY;	return;
-}
-
-//X位置を取得
-int ANIMATION::GetX(void)
-{
-	return this->X;
-}
-
-//Y位置を取得
-int ANIMATION::GetY(void)
-{
-	return this->Y;
-}
-
 //幅を取得
 int ANIMATION::GetWidth(void)
 {
@@ -150,36 +117,37 @@ bool ANIMATION::GetIsLoad(void)
 }
 
 //画像を描画
-void ANIMATION::Draw(void)
+void ANIMATION::Draw(int X, int Y)
 {
-	if (this->IsDraw == true)	//描画して良いなら
+	if (this->IsAnimeStop == false)	//アニメーションをストップさせないなら
 	{
-		DrawGraph(this->X, this->Y, *this->Handle_itr, TRUE);	//イテレータ(ポインタ)を使用して描画
+		DrawGraph(X, Y, *this->Handle_itr, TRUE);	//イテレータ(ポインタ)を使用して描画
+	}
 
-		if (this->ChangeCnt == this->ChangeMaxCnt)	//次の画像を表示する時がきたら
+	if (this->ChangeCnt == this->ChangeMaxCnt)	//次の画像を表示する時がきたら
+	{
+		//this->Handle.end()は、最後の要素の１個次のイテレータを返すので、-1している。
+		if (this->Handle_itr == this->Handle.end() - 1)	//イテレータ(ポインタ)が最後の要素のときは
 		{
-			//this->Handle.end()は、最後の要素の１個次のイテレータを返すので、-1している。
-			if (this->Handle_itr == this->Handle.end() - 1)	//イテレータ(ポインタ)が最後の要素のときは
+			//アニメーションをループしないなら
+			if (this->IsAnimeLoop == false)
 			{
-				if (this->IsAnimeLoop == false)	//アニメーションをループしないなら
-				{
-					this->IsDraw = false;		//描画をやめる
-				}
-
-				//次回の描画に備えて、先頭の画像に戻しておく
-				this->Handle_itr = this->Handle.begin();	//イテレータ(ポインタ)を要素の最初に戻す
-			}
-			else
-			{
-				this->Handle_itr++;	//次のイテレータ(ポインタ)(次の画像)に移動する
+				this->IsAnimeStop = true;	//アニメーションを止める
 			}
 
-			this->ChangeCnt = 0;	//カウント初期化
+			//次回の描画に備えて、先頭の画像に戻しておく
+			this->Handle_itr = this->Handle.begin();	//イテレータ(ポインタ)を要素の最初に戻す
 		}
 		else
 		{
-			this->ChangeCnt++;	//カウントアップ
+			this->Handle_itr++;	//次のイテレータ(ポインタ)(次の画像)に移動する
 		}
+
+		this->ChangeCnt = 0;	//カウント初期化
+	}
+	else
+	{
+		this->ChangeCnt++;	//カウントアップ
 	}
 
 	return;

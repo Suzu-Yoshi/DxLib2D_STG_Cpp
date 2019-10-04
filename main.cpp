@@ -61,8 +61,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
-		jiki->Draw();
-		baku->Draw();
+		jiki->Draw(0,0);
+		baku->Draw(0,0);
 
 		chara->Operation(keydown);
 		chara->Draw();

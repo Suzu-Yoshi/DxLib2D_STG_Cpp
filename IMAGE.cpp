@@ -18,14 +18,7 @@ IMAGE::IMAGE(const char *dir,const char *name)
 
 	this->Handle = -1;		//ハンドル
 
-	this->X = 0;			//X位置
-	this->Y = 0;			//Y位置
-	this->Width = 0;		//幅
-	this->Height = 0;		//高さ
-
 	this->IsLoad = false;	//読み込めたか？
-
-	this->IsDraw = false;	//描画してはいけない
 
 	//画像を読み込み
 	std::string LoadfilePath;	//画像のファイルパスを作成
@@ -60,8 +53,6 @@ IMAGE::IMAGE(const char *dir,const char *name)
 
 	this->IsLoad = true;		//読み込めた
 
-	this->IsDraw = true;		//描画してよい
-
 	return;
 }
 
@@ -76,30 +67,6 @@ IMAGE::~IMAGE()
 std::string IMAGE::GetFileName(void)
 {
 	return this->FileName;
-}
-
-//X位置を設定
-void IMAGE::SetX(int numX)
-{
-	this->X = numX;	return;
-}
-
-//Y位置を設定
-void IMAGE::SetY(int numY)
-{
-	this->Y = numY;	return;
-}
-
-//X位置を取得
-int IMAGE::GetX(void)
-{
-	return this->X;
-}
-
-//Y位置を取得
-int IMAGE::GetY(void)
-{
-	return this->Y;
 }
 
 //幅を取得
@@ -121,13 +88,9 @@ bool IMAGE::GetIsLoad(void)
 }
 
 //画像を描画
-void IMAGE::Draw(void)
+void IMAGE::Draw(int X,int Y)
 {
-	if (this->IsDraw == true)	//描画して良いなら
-	{
-		DrawGraph(this->X, this->Y, this->Handle, TRUE);
-	}
-
+	DrawGraph(X, Y, this->Handle, TRUE);	
 	return;
 }
 

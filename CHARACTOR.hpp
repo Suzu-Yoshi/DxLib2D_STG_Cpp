@@ -33,6 +33,7 @@ private:
 	bool IsAlive;					//生きているか
 	bool IsCreate;					//作成できたか
 	bool IsKeyOperation;			//キーボードで操作ができるか
+	bool IsDraw;					//描画できるか
 
 	IMAGE *image;					//キャラの画像
 	COLLISION *collision;			//当たり判定

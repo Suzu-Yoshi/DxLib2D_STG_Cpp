@@ -13,7 +13,6 @@ VOID CHARACTOR::MoveUp(VOID)
 	if (this->Y - this->Speed >= 0)
 	{
 		this->Y -= this->Speed;
-		this->image->SetY(this->Y);		//‰æ‘œ‚ÌYˆÊ’u‚ðÝ’è‚µ‚È‚¨‚·
 	}
 
 	return;
@@ -25,7 +24,6 @@ VOID CHARACTOR::MoveLeft(VOID)
 	if (this->X - this->Speed >= 0)
 	{
 		this->X -= this->Speed;
-		this->image->SetX(this->X);		//‰æ‘œ‚ÌXˆÊ’u‚ðÝ’è‚µ‚È‚¨‚·
 	}
 
 	return;
@@ -37,7 +35,6 @@ VOID CHARACTOR::MoveDown(VOID)
 	if (this->Y + this->Height + this->Speed <= GAME_HEIGHT)
 	{
 		this->Y += this->Speed;
-		this->image->SetY(this->Y);		//‰æ‘œ‚ÌYˆÊ’u‚ðÝ’è‚µ‚È‚¨‚·
 	}
 
 	return;
@@ -49,7 +46,6 @@ VOID CHARACTOR::MoveRight(VOID)
 	if (this->X + this->Width + this->Speed <= GAME_WIDTH)
 	{
 		this->X += this->Speed;
-		this->image->SetX(this->X);		//‰æ‘œ‚ÌXˆÊ’u‚ðÝ’è‚µ‚È‚¨‚·
 	}
 
 	return;
@@ -64,7 +60,9 @@ CHARACTOR::CHARACTOR()
 
 	this->Width = this->image->GetWidth();		//•‚ðÝ’è
 	this->Height = this->image->GetHeight();	//‚‚³‚ðÝ’è
+
 	this->IsAlive = true;	//¶‚«‚Ä‚¢‚é
+	this->IsDraw = true;	//•`‰æ‚Å‚«‚é
 
 	this->collision = new COLLISION();			//“–‚½‚è”»’è‚ðì¬
 	this->collision->SetValue(this->X, this->Y, this->Width, this->Height);	//“–‚½‚è”»’è‚ðÝ’è
@@ -115,12 +113,8 @@ void CHARACTOR::SetIsAlive(bool alive)
 //XˆÊ’u‚ÆYˆÊ’u‚ðÝ’è
 void CHARACTOR::SetX_Y(int SetX, int SetY)
 {
-	this->X = SetX;							//XˆÊ’u‚ðÝ’è
-	this->image->SetX(this->X);				//•`‰æ‚ÌXˆÊ’u‚ðÝ’è
-
-	this->Y = SetY;							//YˆÊ’u‚ðÝ’è
-	this->image->SetY(this->Y);				//•`‰æ‚ÌYˆÊ’u‚ðÝ’è
-
+	this->X = SetX;		//XˆÊ’u‚ðÝ’è
+	this->Y = SetY;		//YˆÊ’u‚ðÝ’è
 	return;
 }
 
@@ -193,8 +187,11 @@ void CHARACTOR::Draw(void)
 {
 	if (this->IsAlive == true)	//¶‚«‚Ä‚¢‚ê‚Î
 	{
-		this->image->Draw();		//‰æ‘œ‚ð•`‰æ
-		this->collision->Draw(GetColor(255,255,0));	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ
+		if (this->IsDraw == true)	//•`‰æ‚Å‚«‚é‚È‚ç
+		{
+			this->image->Draw(this->X, this->Y);			//‰æ‘œ‚ð•`‰æ
+			this->collision->Draw(GetColor(255, 255, 0));	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ
+		}
 	}
 
 	return;
