@@ -31,7 +31,9 @@ void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int Spri
 		changeSpeed,
 		true);	//弾を生成
 
-	this->SetX_Y(10 * i++, 10);		//位置を設定
+	this->SetX(0);			//位置を設定
+	this->SetY(0);			//位置を設定
+
 	this->IsEnbled = true;	//弾を無効化
 
 	return;
@@ -52,10 +54,36 @@ void TAMA::SetIsEnbled(bool set)
 	this->IsEnbled = set; return;
 }
 
-//X位置とY位置を設定
-void TAMA::SetX_Y(int SetX, int SetY)
+//X位置を取得
+int TAMA::GetX(void)
 {
-	this->X = SetX; this->Y = SetY;
+	return this->X;
+}
+
+//Y位置を取得
+int TAMA::GetY(void)
+{
+	return this->Y;
+}
+
+//X位置を設定
+void TAMA::SetX(int SetX)
+{
+	this->X = SetX; 
+	return;
+}
+
+//Y位置を設定
+void TAMA::SetY(int SetY)
+{
+	this->Y = SetY;
+	return;
+}
+
+//操作
+void TAMA::Operation(void)
+{
+	this->SetX(this->GetX() + this->Speed);
 
 	return;
 }

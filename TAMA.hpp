@@ -96,7 +96,14 @@ public:
 
 	void SetAnime(const char *, const char *,int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
-	void SetX_Y(int, int);		//X位置とY位置を設定
+
+	int  GetX(void);			//X位置を取得
+	int  GetY(void);			//Y位置を取得
+
+	void SetX(int);				//X位置を設定
+	void SetY(int);				//Y位置を設定
+
+	void Operation(void);		//操作
 
 	void Draw();				//画像を描画
 };

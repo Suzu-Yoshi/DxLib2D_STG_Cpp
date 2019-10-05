@@ -20,8 +20,6 @@ private:
 	std::vector<TAMA> tama;					//弾クラス
 	std::vector<TAMA>::iterator tama_itr;	//ハンドルのイテレータ(ポインタ)
 
-
-
 public:
 	PLAYER();			//コンストラクタ
 	virtual ~PLAYER();	//デストラクタ
