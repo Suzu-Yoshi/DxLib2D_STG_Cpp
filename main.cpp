@@ -36,14 +36,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1, 16, 16, 1, BAKU_1_HEIGHT, BAKU_1_HEIGHT, 0.05, true);
 	if (baku->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
 
-	CHARACTOR * chara = new CHARACTOR();
-	if (chara->GetIsCreate() == false) { return -1; };	//キャラクタ作成チェック
+	//CHARACTOR * chara = new CHARACTOR();
+	//if (chara->GetIsCreate() == false) { return -1; };	//キャラクタ作成チェック
 
-	chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
-	chara->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
-	chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
+	//chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
+	//chara->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
+	//chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
 
 	PLAYER *player = new PLAYER();
+	player->SetX_Y(0, GAME_HEIGHT / 2 - player->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
+	player->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
+	player->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
 
 	while (TRUE)	//無限ループ
 	{
@@ -64,12 +67,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		jiki->Draw(0,0);
 		baku->Draw(0,0);
 
-		chara->Operation(keydown);
-		chara->Draw();
+		//chara->Operation(keydown);
+		//chara->Draw();
 
 		player->Operation(keydown);
+		player->OperationTama(keydown);
 		player->Draw();
-		player->DrawTama();
+		player->OpeDrawTama();
 
 		//▲▲▲▲▲ゲームのシーンここまで▲▲▲▲▲
 
@@ -84,7 +88,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	delete jiki;			//jikiを破棄
 	delete baku;			//bakuを破棄
-	delete chara;			//charaを破棄
+	//delete chara;			//charaを破棄
 
 	delete fps;				//FPSを破棄
 	delete keydown;			//keydownを破棄

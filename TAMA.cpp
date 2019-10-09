@@ -7,12 +7,35 @@
 
 //########## クラスの定義 ##########
 
-int i = 0;
-
 //コンストラクタ
 TAMA::TAMA()
 {
-	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_SPEED);
+	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
+
+	this->SetInitInfo(0, 0);	//初期設定
+
+	return;
+}
+
+//コンストラクタ
+TAMA::TAMA(int SetX, int SetY)
+{
+	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
+
+	this->SetInitInfo(SetX, SetY);	//初期設定
+
+	return;
+}
+
+//初期設定
+void TAMA::SetInitInfo(int SetX, int SetY)
+{
+	this->SetSpeed(TAMA_MOVE_SPEED_SLOW);	//速さを設定
+
+	this->SetX(SetX);		//位置を設定
+	this->SetY(SetY);		//位置を設定
+
+	this->IsEnbled = true;	//弾を無効化
 
 	return;
 }
@@ -31,20 +54,16 @@ void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int Spri
 		changeSpeed,
 		true);	//弾を生成
 
-	this->SetX(0);			//位置を設定
-	this->SetY(0);			//位置を設定
-
-	this->IsEnbled = true;	//弾を無効化
-
 	return;
 }
 //デストラクタ
 TAMA::~TAMA()
 {
-	if (!this->Anime)
+	if (!this->Anime)	//emplace_backで呼ばれるときの対処
 	{
 		delete this->Anime;
 	}
+
 	return;
 }
 
@@ -52,6 +71,19 @@ TAMA::~TAMA()
 void TAMA::SetIsEnbled(bool set)
 {
 	this->IsEnbled = set; return;
+}
+
+//速さを設定
+void TAMA::SetSpeed(int sp)
+{
+	this->Speed = sp;
+	return;
+}
+
+//速さを取得
+int TAMA::GetSpeed(void)
+{
+	return this->Speed;
 }
 
 //X位置を取得
@@ -69,7 +101,7 @@ int TAMA::GetY(void)
 //X位置を設定
 void TAMA::SetX(int SetX)
 {
-	this->X = SetX; 
+	this->X = SetX;
 	return;
 }
 
@@ -83,8 +115,7 @@ void TAMA::SetY(int SetY)
 //操作
 void TAMA::Operation(void)
 {
-	this->SetX(this->GetX() + this->Speed);
-
+ 	this->SetX(this->X + this->Speed);
 	return;
 }
 
@@ -93,6 +124,6 @@ void TAMA::Draw(void)
 {
 	if (this->IsEnbled == true)	//描画して良いなら
 	{
-		this->Anime->Draw(this->X, this->Y);
+		this->Anime->Draw(this->GetX(), this->GetY());
 	}
 }

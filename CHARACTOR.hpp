@@ -65,6 +65,9 @@ public:
 	int GetRight(void);				//右の位置を取得
 	int GetBottom(void);			//下の位置を取得
 
+	int GetCentorX(void);			//Xの中心位置を取得
+	int GetCentorY(void);			//Yの中心位置を取得
+
 	void Operation(KEYDOWN *);		//操作
 	void Draw(void);				//描画
 

@@ -10,9 +10,9 @@
 //コンストラクタ
 PLAYER::PLAYER()
 {
-	this->tama.resize(1);					//resize：vectorの要素数を変更する
+	this->tama.reserve(10);	//弾の現在の予想最大上限数を予め決めておく
 	this->tama_itr = this->tama.begin();	//先頭のポインタを入れる
-	
+
 	return;
 }
 
@@ -27,7 +27,7 @@ PLAYER::~PLAYER()
 }
 
 //操作
-void PLAYER::Operation(KEYDOWN *keydown)
+void PLAYER::OperationTama(KEYDOWN *keydown)
 {
 	if (keydown->IsKeyDown(KEY_INPUT_SPACE))			//スペースキーを押しているとき
 	{
@@ -40,18 +40,23 @@ void PLAYER::Operation(KEYDOWN *keydown)
 //弾を作成
 void PLAYER::CreateTama(void)
 {
-	this->tama.emplace_back(TAMA());	//要素を追加
-	
+	this->tama.emplace_back(TAMA(this->GetRight(),this->GetCentorY()));	//要素を追加
+
 	return;
 }
 
-//弾を描画
-void PLAYER::DrawTama(void)
+//弾を操作＆描画
+void PLAYER::OpeDrawTama(void)
 {
-	for (TAMA for_tama : this->tama)
+
+	//拡張forで行うと、拡張forが終わるとき、使われていた変数のデストラクタが発生する！？
+	for (std::vector<TAMA>::iterator itr = this->tama.begin(); itr != this->tama.end(); ++itr)
 	{
-		for_tama.Draw();	//描画
+		itr->Operation();	//操作
+		itr->Draw();		//描画
 	}
+
+	return;
 }
 
 //弾を削除

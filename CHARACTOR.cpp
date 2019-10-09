@@ -155,6 +155,18 @@ int CHARACTOR::GetBottom(void)
 	return this->Y + this->Height;
 }
 
+//Xの中心位置を取得
+int CHARACTOR::GetCentorX(void)
+{
+	return this->X + (this->Width / 2);
+}
+
+//Yの中心位置を取得
+int CHARACTOR::GetCentorY(void)
+{
+	return this->Y + (this->Height / 2);
+}
+
 //操作
 void CHARACTOR::Operation(KEYDOWN *keydown)
 {

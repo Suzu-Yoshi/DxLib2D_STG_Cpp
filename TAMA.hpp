@@ -61,7 +61,7 @@
 #define TATEMARU_WIDTH	14	//分割する幅の大きさ
 #define TATEMARU_HEIGHT	24	//分割する高さの大きさ
 
-#define TAMA_SPEED		0.1	//弾の速さ
+#define TAMA_DRAW_SPEED		0.1	//弾の描画を変更する速さ
 
 #define TAMA_TYPE_TAMA		1	//弾の種類
 #define TAMA_TYPE_HISI		2	//弾の種類
@@ -75,6 +75,10 @@
 #define TAMA_COLOR_MURASAKI	4	//弾の色
 #define TAMA_COLOR_ORANGE	5	//弾の色
 #define TAMA_COLOR_PINK		6	//弾の色
+
+#define TAMA_MOVE_SPEED_SLOW	4	//弾の動く速さ
+#define TAMA_MOVE_SPEED_MIDDLE	8	//弾の動く速さ
+#define TAMA_MOVE_SPEED_FAST	16	//弾の動く速さ
 
 //########## クラスの定義 ##########
 
@@ -92,10 +96,17 @@ private:
 
 public:
 	TAMA();						//コンストラクタ
+	TAMA(int,int);				//コンストラクタ
+
 	virtual ~TAMA();			//デストラクタ
 
 	void SetAnime(const char *, const char *,int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
+
+	void SetInitInfo(int, int);	//初期設定
+
+	void SetSpeed(int);			//速さを設定
+	int GetSpeed(void);			//速さを取得
 
 	int  GetX(void);			//X位置を取得
 	int  GetY(void);			//Y位置を取得
@@ -106,4 +117,5 @@ public:
 	void Operation(void);		//操作
 
 	void Draw();				//画像を描画
+
 };

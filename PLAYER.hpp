@@ -17,17 +17,17 @@
 class PLAYER : public CHARACTOR
 {
 private:
-	std::vector<TAMA> tama;					//弾クラス
+	std::vector<TAMA> tama;				//弾クラス
 	std::vector<TAMA>::iterator tama_itr;	//ハンドルのイテレータ(ポインタ)
 
 public:
 	PLAYER();			//コンストラクタ
 	virtual ~PLAYER();	//デストラクタ
 
-	void Operation(KEYDOWN *);	//操作
+	void OperationTama(KEYDOWN *);	//操作
 
 	void CreateTama(void);		//弾を作成
-	void DrawTama(void);		//弾を描画
+	void OpeDrawTama(void);		//弾を描画
 	void DeleteTama(std::vector<TAMA>::iterator);		//弾を削除
 
 };
