@@ -118,6 +118,30 @@ void CHARACTOR::SetX_Y(int SetX, int SetY)
 	return;
 }
 
+//X位置を取得
+int CHARACTOR::GetX(void)
+{
+	return this->X;
+}
+
+//Y位置を取得
+int CHARACTOR::GetY(void)
+{
+	return this->Y;
+}
+
+//中心値を取得
+int CHARACTOR::GetCenterX(void)
+{
+	return (this->X + this->Width) / 2;
+}
+
+//中心値を取得
+int CHARACTOR::GetCenterY(void)
+{
+	return (this->Y + this->Height) / 2;
+}
+
 //作成できたか取得
 bool CHARACTOR::GetIsCreate(void)
 {
