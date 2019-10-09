@@ -114,6 +114,9 @@ public:
 	void SetX(int);				//X位置を設定
 	void SetY(int);				//Y位置を設定
 
+	int GetCenterX(void);		//中心値を取得
+	int GetCenterY(void);		//中心値を取得
+
 	void Operation(void);		//操作
 
 	void Draw();				//画像を描画

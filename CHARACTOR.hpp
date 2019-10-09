@@ -59,8 +59,13 @@ public:
 
 	void SetIsKeyOperation(bool);	//キーボードで操作ができるか設定する
 
+	int GetX(void);					//X位置を取得
+	int GetY(void);					//Y位置を取得
 	int GetWidth(void);				//幅を取得
 	int GetHeight(void);			//高さを取得
+
+	int GetCenterX(void);			//中心値を取得
+	int GetCenterY(void);			//中心値を取得
 
 	int GetRight(void);				//右の位置を取得
 	int GetBottom(void);			//下の位置を取得

@@ -54,6 +54,11 @@ void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int Spri
 		changeSpeed,
 		true);	//弾を生成
 
+	this->SetX(0);			//位置を設定
+	this->SetY(0);			//位置を設定
+
+	this->IsEnbled = true;	//弾を無効化
+
 	return;
 }
 //デストラクタ
@@ -110,6 +115,18 @@ void TAMA::SetY(int SetY)
 {
 	this->Y = SetY;
 	return;
+}
+
+//中心値を取得
+int TAMA::GetCenterX(void)
+{
+	return (this->X + this->Anime->GetWidth()) / 2;
+}
+
+//中心値を取得
+int TAMA::GetCenterY(void)
+{
+	return (this->Y + this->Anime->GetHeight()) / 2;
 }
 
 //操作
