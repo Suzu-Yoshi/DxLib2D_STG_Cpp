@@ -54,8 +54,8 @@ void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int Spri
 		changeSpeed,
 		true);	//’e‚ð¶¬
 
-	this->SetX(0);			//ˆÊ’u‚ðÝ’è
-	this->SetY(0);			//ˆÊ’u‚ðÝ’è
+	this->SetX(this->Anime->GetWidth());		//ˆÊ’u‚ðÝ’è
+	this->SetY(this->GetCenterY());			//ˆÊ’u‚ðÝ’è
 
 	this->IsEnbled = true;	//’e‚ð–³Œø‰»
 
