@@ -133,13 +133,13 @@ int CHARACTOR::GetY(void)
 //中心値を取得
 int CHARACTOR::GetCenterX(void)
 {
-	return (this->X + this->Width) / 2;
+	return this->X + (this->Width / 2);
 }
 
 //中心値を取得
 int CHARACTOR::GetCenterY(void)
 {
-	return (this->Y + this->Height) / 2;
+	return this->Y + (this->Height / 2);
 }
 
 //作成できたか取得

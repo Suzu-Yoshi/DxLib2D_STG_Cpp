@@ -40,7 +40,7 @@ void PLAYER::OperationTama(KEYDOWN *keydown)
 //’e‚ðì¬
 void PLAYER::CreateTama(void)
 {
-	this->tama.emplace_back(TAMA());			//—v‘f‚ð’Ç‰Á
+	this->tama.emplace_back(TAMA(this->GetRight(),this->GetCenterY()));			//—v‘f‚ð’Ç‰Á
 
 	return;
 }
