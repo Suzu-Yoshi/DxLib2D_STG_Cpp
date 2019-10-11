@@ -60,10 +60,17 @@ void PLAYER::OpeDrawTama(void)
 }
 
 //弾を削除
-void PLAYER::DeleteTama(std::vector<TAMA>::iterator itr)
+void PLAYER::DeleteTama(int DeleteNumber)
 {
+	std::swap(this->tama[DeleteNumber], this->tama.back());	//削除対象と末尾を交換
+	this->tama.pop_back();									//末尾を削除
+
+	/*
 	if (!this->tama.empty())	//ベクターの要素が空でなければ
 	{
 		this->tama.erase(itr);	//要素を追加
 	}
+	*/
+
+	return;
 }

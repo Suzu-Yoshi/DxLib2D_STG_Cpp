@@ -28,7 +28,7 @@ public:
 
 	void CreateTama(void);		//’e‚ğì¬
 	void OpeDrawTama(void);		//’e‚ğ•`‰æ
-	void DeleteTama(std::vector<TAMA>::iterator);		//’e‚ğíœ
+	void DeleteTama(int);		//’e‚ğíœ
 
 };
 
