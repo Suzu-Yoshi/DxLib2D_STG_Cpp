@@ -7,6 +7,7 @@
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "ANIMATION.hpp"
+#include "main.hpp"
 
 //########## マクロ定義：画像のファイルパスと名前 ##########
 #define MY_ANIME_DIR_TAMA		R"(.\MY_ANIME\tama\)"		//弾の画像フォルダの場所
@@ -46,7 +47,7 @@
 #define MY_ANIME_NAME_TATEMARU_ORANGE	R"(tatemaru_orage_01.png)"		//丸の画像の名前
 #define MY_ANIME_NAME_TATEMARU_PINK		R"(tatemaru_pink_01.png)"		//丸の画像の名前
 
-#define TAMA_WIDTH	13	//分割する幅の大きさ
+#define TAMA_WIDTH	12	//分割する幅の大きさ
 #define TAMA_HEIGHT	12	//分割する高さの大きさ
 
 #define HISI_WIDTH	12	//分割する幅の大きさ
@@ -92,18 +93,20 @@ private:
 	int X;					//縦の位置
 	int Y;					//横の位置
 
+	int No;					//弾の番号
+
 	bool IsEnbled;			//弾が有効か
 
 public:
 	TAMA();						//コンストラクタ
-	TAMA(int,int);				//コンストラクタ
+	TAMA(int, int, int);			//コンストラクタ
 
 	virtual ~TAMA();			//デストラクタ
 
-	void SetAnime(const char *, const char *,int, int, int, int, int, double);	//弾のアニメーションを作成
+	void SetAnime(const char *, const char *, int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
 
-	void SetInitInfo(int, int);	//初期設定
+	void SetInitInfo(int, int, int);	//初期設定
 
 	void SetSpeed(int);			//速さを設定
 	int GetSpeed(void);			//速さを取得
@@ -114,10 +117,13 @@ public:
 	void SetX(int);				//X位置を設定
 	void SetY(int);				//Y位置を設定
 
+	int  GetNo(void);			//Noを取得
+	void SetNo(int);			//Noを設定
+
 	int GetCenterX(void);		//中心値を取得
 	int GetCenterY(void);		//中心値を取得
 
-	void Operation(void);		//操作
+	bool Operation(void);		//操作
 
 	void Draw();				//画像を描画
 

@@ -18,6 +18,8 @@ FPS::FPS(int fps_value)
 	this->flameCount = 0;
 	this->calcAverage = (double)value;
 
+	this->TotalFlameCnt = 0;
+
 	return;
 }
 
@@ -43,6 +45,9 @@ VOID FPS::Wait(VOID)
 			Sleep(wait_tm);
 		}
 	}
+
+	//総フレームをカウント
+	TotalFlameCnt++;
 
 	return;
 }
@@ -91,6 +96,12 @@ VOID FPS::Draw(int drawX, int drawY)
 int FPS::Getvalue(VOID)
 {
 	return this->value;
+}
+
+//総フレームを取得する
+int FPS::GetTotalFlameCnt(VOID)
+{
+	return this->TotalFlameCnt;
 }
 
 //デストラクタ

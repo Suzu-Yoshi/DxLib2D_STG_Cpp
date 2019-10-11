@@ -12,28 +12,30 @@ TAMA::TAMA()
 {
 	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
 
-	this->SetInitInfo(0, 0);	//‰ŠúÝ’è
+	this->SetInitInfo(0, 0, 0);	//‰ŠúÝ’è
 
 	return;
 }
 
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-TAMA::TAMA(int SetX, int SetY)
+TAMA::TAMA(int SetX, int SetY, int Number)
 {
 	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
 
-	this->SetInitInfo(SetX, SetY);	//‰ŠúÝ’è
+	this->SetInitInfo(SetX, SetY, Number);	//‰ŠúÝ’è
 
 	return;
 }
 
 //‰ŠúÝ’è
-void TAMA::SetInitInfo(int SetX, int SetY)
+void TAMA::SetInitInfo(int SetX, int SetY, int Number)
 {
 	this->SetSpeed(TAMA_MOVE_SPEED_SLOW);	//‘¬‚³‚ðÝ’è
 
 	this->SetX(SetX);		//ˆÊ’u‚ðÝ’è
 	this->SetY(SetY);		//ˆÊ’u‚ðÝ’è
+
+	this->SetNo(Number);	//”Ô†‚ðÝ’è
 
 	this->IsEnbled = true;	//’e‚ð–³Œø‰»
 
@@ -76,6 +78,19 @@ TAMA::~TAMA()
 void TAMA::SetIsEnbled(bool set)
 {
 	this->IsEnbled = set; return;
+}
+
+//No‚ðŽæ“¾
+int  TAMA::GetNo(void)
+{
+	return this->No;
+}
+
+//No‚ðÝ’è
+void TAMA::SetNo(int Number)
+{
+	this->No = Number;
+	return;
 }
 
 //‘¬‚³‚ðÝ’è
@@ -130,10 +145,19 @@ int TAMA::GetCenterY(void)
 }
 
 //‘€ì
-void TAMA::Operation(void)
+bool TAMA::Operation(void)
 {
- 	this->SetX(this->X + this->Speed);
-	return;
+	this->SetX(this->X + this->Speed);	//’e‚ÌˆÚ“®
+
+	//’e‚ª‰æ–Ê‚Ì’†‚È‚çEEE
+	if (this->GetX() >= 0 && this->GetX() <= GAME_WIDTH &&
+		this->GetY() >= 0 && this->GetY() <= GAME_HEIGHT)
+	{
+		return true;	//’e‚Ì‘€ì‚ðŒp‘±
+	}
+
+	//’e‚ª‰æ–Ê‚ÌŠO‚È‚çEEE
+	return false;					//’e‚Ì‘€ìI—¹
 }
 
 //‰æ‘œ‚ð•`‰æ

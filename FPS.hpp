@@ -19,6 +19,8 @@ private:
 	DWORD		flameCount;				//フレームのカウント
 	double		calcAverage; 			//FPSを計算するための平均サンプル数
 
+	int			TotalFlameCnt;			//現在の総フレーム数
+
 public:
 
 	//コンストラクタ
@@ -38,6 +40,9 @@ public:
 
 	//FPS値を取得する
 	int Getvalue(VOID);
+
+	//総フレームを取得する
+	int GetTotalFlameCnt(VOID);
 
 	//デストラクタ
 	virtual ~FPS();
