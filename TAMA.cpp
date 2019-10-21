@@ -24,6 +24,10 @@ TAMA::TAMA(int SetX, int SetY, int Number)
 
 	this->SetInitInfo(SetX, SetY, Number);	//‰Šúİ’è
 
+	this->collision = new COLLISION();			//“–‚½‚è”»’è‚ğì¬
+	this->collision->SetValue(this->X, this->Y, this->Width, this->Height);	//“–‚½‚è”»’è‚ğİ’è
+	this->collision->SetIsDraw(true);			//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğ•`‰æ‚·‚é
+
 	return;
 }
 
@@ -130,6 +134,30 @@ void TAMA::SetY(int SetY)
 {
 	this->Y = SetY;
 	return;
+}
+
+//•‚ğæ“¾
+void TAMA::GetWidth(int w)
+{
+	this->Width = w;
+}
+
+//•‚ğİ’è
+int TAMA::SetWidth(void)
+{
+	return this->Width;
+}
+
+//‚‚³‚ğæ“¾
+void TAMA::GetHeight(int h)
+{
+
+}
+
+//‚‚³‚ğİ’è
+int TAMA::SetHeight(void)
+{
+
 }
 
 //’†S’l‚ğæ“¾

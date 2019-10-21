@@ -9,8 +9,8 @@
 #include "main.hpp"
 #include "KEYDOWN.hpp"
 #include "IMAGE.hpp"
+#include "SIKAKU.hpp"
 #include "COLLISION.hpp"
-
 
 //########## マクロ定義 ##########
 
@@ -25,18 +25,16 @@ class CHARACTOR
 {
 private:
 
-	int X;							//X位置
-	int Y;							//Y位置
-	int Width;						//幅
-	int Height;						//高さ
+	SIKAKU *sikaku_draw;			//キャラの描画する領域
+	SIKAKU *sikaku_Atari;			//キャラの当たり判定の領域
+	IMAGE *image;					//キャラの画像
+	COLLISION *collision;			//当たり判定
+
 	int Speed;						//速度
 	bool IsAlive;					//生きているか
 	bool IsCreate;					//作成できたか
 	bool IsKeyOperation;			//キーボードで操作ができるか
 	bool IsDraw;					//描画できるか
-
-	IMAGE *image;					//キャラの画像
-	COLLISION *collision;			//当たり判定
 
 public:
 
@@ -49,30 +47,14 @@ public:
 	virtual ~CHARACTOR();			//デストラクタ
 
 	int GetSpeed(void);				//速さを取得
-	void SetSpeed(int);				//速さを設定
-	
 	bool GetIsAlive(void);			//生きているか取得
-	void SetIsAlive(bool);			//生きているか設定
-	
-	void SetX_Y(int,int);			//X位置とY位置を設定
 	bool GetIsCreate(void);			//作成できたか取得
 
+	void SetSpeed(int);				//速さを設定
+	void SetIsAlive(bool);			//生きているか設定
 	void SetIsKeyOperation(bool);	//キーボードで操作ができるか設定する
 
-	int GetX(void);					//X位置を取得
-	int GetY(void);					//Y位置を取得
-	int GetWidth(void);				//幅を取得
-	int GetHeight(void);			//高さを取得
-
-	int GetCenterX(void);			//中心値を取得
-	int GetCenterY(void);			//中心値を取得
-
-	int GetRight(void);				//右の位置を取得
-	int GetBottom(void);			//下の位置を取得
-
-	int GetCentorX(void);			//Xの中心位置を取得
-	int GetCentorY(void);			//Yの中心位置を取得
-
+	bool Init(void);				//初期設定
 	void Operation(KEYDOWN *);		//操作
 	void Draw(void);				//描画
 

@@ -7,6 +7,7 @@
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "ANIMATION.hpp"
+#include "COLLISION.hpp"
 #include "main.hpp"
 
 //########## マクロ定義：画像のファイルパスと名前 ##########
@@ -14,38 +15,6 @@
 
 #define MY_ANIME_NAME_TAMA_AKA		R"(tama_aka_01.png)"		//弾の画像の名前
 #define MY_ANIME_NAME_TAMA_AO		R"(tama_ao_01.png)"			//弾の画像の名前
-#define MY_ANIME_NAME_TAMA_MIDORI	R"(tama_midori_01.png)"		//弾の画像の名前
-#define MY_ANIME_NAME_TAMA_MURASAKI	R"(tama_murasaki_01.png)"	//弾の画像の名前
-#define MY_ANIME_NAME_TAMA_ORANGE	R"(tama_orage_01.png)"		//弾の画像の名前
-#define MY_ANIME_NAME_TAMA_PINK		R"(tama_pink_01.png)"		//弾の画像の名前
-
-#define MY_ANIME_NAME_HISI_AKA		R"(hisigata_aka_01.png)"		//ひし形の画像の名前
-#define MY_ANIME_NAME_HISI_AO		R"(hisigata_ao_01.png)"			//ひし形の画像の名前
-#define MY_ANIME_NAME_HISI_MIDORI	R"(hisigata_midori_01.png)"		//ひし形の画像の名前
-#define MY_ANIME_NAME_HISI_MURASAKI	R"(hisigata_murasaki_01.png)"	//ひし形の画像の名前
-#define MY_ANIME_NAME_HISI_ORANGE	R"(hisigata_orage_01.png)"		//ひし形の画像の名前
-#define MY_ANIME_NAME_HISI_PINK		R"(hisigata_pink_01.png)"		//ひし形の画像の名前
-
-#define MY_ANIME_NAME_MARU_AKA		R"(maru_aka_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_MARU_AO		R"(maru_ao_01.png)"			//丸の画像の名前
-#define MY_ANIME_NAME_MARU_MIDORI	R"(maru_midori_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_MARU_MURASAKI	R"(maru_murasaki_01.png)"	//丸の画像の名前
-#define MY_ANIME_NAME_MARU_ORANGE	R"(maru_orage_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_MARU_PINK		R"(maru_pink_01.png)"		//丸の画像の名前
-
-#define MY_ANIME_NAME_SIROMARU_AKA		R"(siromaru_aka_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_SIROMARU_AO		R"(siromaru_ao_01.png)"			//丸の画像の名前
-#define MY_ANIME_NAME_SIROMARU_MIDORI	R"(siromaru_midori_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_SIROMARU_MURASAKI	R"(siromaru_murasaki_01.png)"	//丸の画像の名前
-#define MY_ANIME_NAME_SIROMARU_ORANGE	R"(siromaru_orage_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_SIROMARU_PINK		R"(siromaru_pink_01.png)"		//丸の画像の名前
-
-#define MY_ANIME_NAME_TATEMARU_AKA		R"(tatemaru_aka_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_TATEMARU_AO		R"(tatemaru_ao_01.png)"			//丸の画像の名前
-#define MY_ANIME_NAME_TATEMARU_MIDORI	R"(tatemaru_midori_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_TATEMARU_MURASAKI	R"(tatemaru_murasaki_01.png)"	//丸の画像の名前
-#define MY_ANIME_NAME_TATEMARU_ORANGE	R"(tatemaru_orage_01.png)"		//丸の画像の名前
-#define MY_ANIME_NAME_TATEMARU_PINK		R"(tatemaru_pink_01.png)"		//丸の画像の名前
 
 #define TAMA_WIDTH	12	//分割する幅の大きさ
 #define TAMA_HEIGHT	12	//分割する高さの大きさ
@@ -87,11 +56,14 @@ class TAMA
 {
 private:
 	ANIMATION *Anime;		//弾のアニメーション
+	COLLISION *collision;	//当たり判定
 	int ATK;				//攻撃力
 	int Speed;				//速さ
 
 	int X;					//縦の位置
 	int Y;					//横の位置
+	int Width;				//弾の幅
+	int Height;				//弾の高さ
 
 	int No;					//弾の番号
 
@@ -99,7 +71,7 @@ private:
 
 public:
 	TAMA();						//コンストラクタ
-	TAMA(int, int, int);			//コンストラクタ
+	TAMA(int, int, int);		//コンストラクタ
 
 	virtual ~TAMA();			//デストラクタ
 
@@ -116,6 +88,12 @@ public:
 
 	void SetX(int);				//X位置を設定
 	void SetY(int);				//Y位置を設定
+
+	void GetWidth(int);			//幅を取得
+	int SetWidth(void);			//幅を設定
+
+	void GetHeight(int);		//高さを取得
+	int SetHeight(void);		//高さを設定
 
 	int  GetNo(void);			//Noを取得
 	void SetNo(int);			//Noを設定

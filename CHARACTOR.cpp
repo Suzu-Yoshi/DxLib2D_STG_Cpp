@@ -10,9 +10,10 @@
 //上に動く
 VOID CHARACTOR::MoveUp(VOID)
 {
-	if (this->Y - this->Speed >= 0)
+	if (this->sikaku_draw->Top - this->Speed >= GAME_LEFT)
 	{
-		this->Y -= this->Speed;
+		this->sikaku_draw->Top -= this->Speed;
+		this->sikaku_Atari->Top -= this->Speed;
 	}
 
 	return;
@@ -21,9 +22,10 @@ VOID CHARACTOR::MoveUp(VOID)
 //左に動く
 VOID CHARACTOR::MoveLeft(VOID)
 {
-	if (this->X - this->Speed >= 0)
+	if (this->sikaku_draw->Left - this->Speed >= GAME_LEFT)
 	{
-		this->X -= this->Speed;
+		this->sikaku_draw->Left -= this->Speed;
+		this->sikaku_Atari->Left -= this->Speed;
 	}
 
 	return;
@@ -32,9 +34,10 @@ VOID CHARACTOR::MoveLeft(VOID)
 //下に動く
 VOID CHARACTOR::MoveDown(VOID)
 {
-	if (this->Y + this->Height + this->Speed <= GAME_HEIGHT)
+	if (this->sikaku_draw->GetBottom() + this->Speed <= GAME_HEIGHT)
 	{
-		this->Y += this->Speed;
+		this->sikaku_draw->Top += this->Speed;
+		this->sikaku_Atari->Top += this->Speed;
 	}
 
 	return;
@@ -43,39 +46,26 @@ VOID CHARACTOR::MoveDown(VOID)
 //右に動く
 VOID CHARACTOR::MoveRight(VOID)
 {
-	if (this->X + this->Width + this->Speed <= GAME_WIDTH)
+	if (this->sikaku_draw->GetRight() + this->Speed <= GAME_WIDTH)
 	{
-		this->X += this->Speed;
+		this->sikaku_draw->Left += this->Speed;
+		this->sikaku_Atari->Left += this->Speed;
 	}
 
 	return;
 }
 
 //コンストラクタ
-//引　数：int：速さ
 CHARACTOR::CHARACTOR()
 {
-	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);				//画像を読み込み
-	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return; };	//画像読み込みチェック
-
-	this->Width = this->image->GetWidth();		//幅を設定
-	this->Height = this->image->GetHeight();	//高さを設定
-
-	this->IsAlive = true;	//生きている
-	this->IsDraw = true;	//描画できる
-
-	this->collision = new COLLISION();			//当たり判定を作成
-	this->collision->SetValue(this->X, this->Y, this->Width, this->Height);	//当たり判定を設定
-	this->collision->SetIsDraw(true);			//当たり判定の範囲を描画する
-
-	this->IsCreate = true;	//作成完了
-
 	return;
 }
 
 //デストラクタ
 CHARACTOR::~CHARACTOR()
 {
+	delete this->sikaku_Atari;
+	delete this->sikaku_draw;
 	delete this->collision;
 	delete this->image;
 
@@ -110,37 +100,6 @@ void CHARACTOR::SetIsAlive(bool alive)
 	return;
 }
 
-//X位置とY位置を設定
-void CHARACTOR::SetX_Y(int SetX, int SetY)
-{
-	this->X = SetX;		//X位置を設定
-	this->Y = SetY;		//Y位置を設定
-	return;
-}
-
-//X位置を取得
-int CHARACTOR::GetX(void)
-{
-	return this->X;
-}
-
-//Y位置を取得
-int CHARACTOR::GetY(void)
-{
-	return this->Y;
-}
-
-//中心値を取得
-int CHARACTOR::GetCenterX(void)
-{
-	return this->X + (this->Width / 2);
-}
-
-//中心値を取得
-int CHARACTOR::GetCenterY(void)
-{
-	return this->Y + (this->Height / 2);
-}
 
 //作成できたか取得
 bool CHARACTOR::GetIsCreate(void)
@@ -155,40 +114,24 @@ void CHARACTOR::SetIsKeyOperation(bool isOpe)
 	return;
 }
 
-//幅を取得
-int CHARACTOR::GetWidth(void)
+//初期設定
+bool CHARACTOR::Init(char * ,char *)
 {
-	return this->Width;
-}
+	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);				//画像を読み込み
+	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return; };	//画像読み込みチェック
 
-//高さを取得
-int CHARACTOR::GetHeight(void)
-{
-	return this->Height;
-}
+	this->sikaku->Width = this->image->GetWidth();		//幅を設定
+	this->sikaku->Height = this->image->GetHeight();	//高さを設定
 
-//右の位置を取得
-int CHARACTOR::GetRight(void)
-{
-	return this->X + this->Width;
-}
+	this->IsAlive = true;	//生きている
+	this->IsDraw = true;	//描画できる
 
-//下の位置を取得
-int CHARACTOR::GetBottom(void)
-{
-	return this->Y + this->Height;
-}
+	this->collision = new COLLISION();			//当たり判定を作成
+	this->collision->SetIsDraw(true);			//当たり判定の範囲を描画する
 
-//Xの中心位置を取得
-int CHARACTOR::GetCentorX(void)
-{
-	return this->X + (this->Width / 2);
-}
+	this->IsCreate = true;	//作成完了
 
-//Yの中心位置を取得
-int CHARACTOR::GetCentorY(void)
-{
-	return this->Y + (this->Height / 2);
+	return;
 }
 
 //操作
@@ -211,9 +154,6 @@ void CHARACTOR::Operation(KEYDOWN *keydown)
 	{
 		this->MoveRight();
 	}
-
-	//当たり判定の範囲を更新
-	this->collision->SetValue(this->X, this->Y, this->GetRight(), this->GetBottom());
 
 	return;
 }
