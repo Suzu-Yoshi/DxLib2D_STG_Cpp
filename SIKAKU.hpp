@@ -17,14 +17,15 @@ public:
 	int Top;		//Y位置
 	int Width;		//幅
 	int Height;		//高さ
+	int Right;		//X位置＋幅
+	int Bottom;		//Y位置＋高さ
 
 public:
 	SIKAKU();					//コンストラクタ
 	SIKAKU(int, int, int, int);	//コンストラクタのオーバーロード
 	virtual ~SIKAKU();	//デストラクタ
 
-	int GetRight(void);		//四角の右下のX位置を取得
-	int GetBottom(void);	//四角の右下のY位置を取得
+	void SetValue(int, int, int, int);	//四角の位置を設定
 
 	int GetCenterX(void);	//四角の中心のX位置を取得
 	int GetCenterY(void);	//四角の中心のY位置を取得

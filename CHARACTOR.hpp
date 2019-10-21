@@ -26,7 +26,6 @@ class CHARACTOR
 private:
 
 	SIKAKU *sikaku_draw;			//キャラの描画する領域
-	SIKAKU *sikaku_Atari;			//キャラの当たり判定の領域
 	IMAGE *image;					//キャラの画像
 	COLLISION *collision;			//当たり判定
 
@@ -54,7 +53,8 @@ public:
 	void SetIsAlive(bool);			//生きているか設定
 	void SetIsKeyOperation(bool);	//キーボードで操作ができるか設定する
 
-	bool Init(void);				//初期設定
+	bool Init(const char*, const char*, int, int);	//初期設定
+	bool Init(const char*, const char*);			//初期設定
 	void Operation(KEYDOWN *);		//操作
 	void Draw(void);				//描画
 

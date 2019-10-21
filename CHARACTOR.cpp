@@ -10,10 +10,9 @@
 //ã‚É“®‚­
 VOID CHARACTOR::MoveUp(VOID)
 {
-	if (this->sikaku_draw->Top - this->Speed >= GAME_LEFT)
+	if (this->sikaku_draw->Top- this->Speed >= GAME_LEFT)
 	{
 		this->sikaku_draw->Top -= this->Speed;
-		this->sikaku_Atari->Top -= this->Speed;
 	}
 
 	return;
@@ -25,7 +24,6 @@ VOID CHARACTOR::MoveLeft(VOID)
 	if (this->sikaku_draw->Left - this->Speed >= GAME_LEFT)
 	{
 		this->sikaku_draw->Left -= this->Speed;
-		this->sikaku_Atari->Left -= this->Speed;
 	}
 
 	return;
@@ -34,10 +32,9 @@ VOID CHARACTOR::MoveLeft(VOID)
 //‰º‚É“®‚­
 VOID CHARACTOR::MoveDown(VOID)
 {
-	if (this->sikaku_draw->GetBottom() + this->Speed <= GAME_HEIGHT)
+	if (this->sikaku_draw->Bottom + this->Speed <= GAME_HEIGHT)
 	{
 		this->sikaku_draw->Top += this->Speed;
-		this->sikaku_Atari->Top += this->Speed;
 	}
 
 	return;
@@ -46,10 +43,9 @@ VOID CHARACTOR::MoveDown(VOID)
 //‰E‚É“®‚­
 VOID CHARACTOR::MoveRight(VOID)
 {
-	if (this->sikaku_draw->GetRight() + this->Speed <= GAME_WIDTH)
+	if (this->sikaku_draw->Right + this->Speed <= GAME_WIDTH)
 	{
 		this->sikaku_draw->Left += this->Speed;
-		this->sikaku_Atari->Left += this->Speed;
 	}
 
 	return;
@@ -64,7 +60,6 @@ CHARACTOR::CHARACTOR()
 //ƒfƒXƒgƒ‰ƒNƒ^
 CHARACTOR::~CHARACTOR()
 {
-	delete this->sikaku_Atari;
 	delete this->sikaku_draw;
 	delete this->collision;
 	delete this->image;
@@ -115,23 +110,24 @@ void CHARACTOR::SetIsKeyOperation(bool isOpe)
 }
 
 //‰ŠúÝ’è
-bool CHARACTOR::Init(char * ,char *)
+bool CHARACTOR::Init(const char * dir, const char *fileName,int StartX,int StartY)
 {
-	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);				//‰æ‘œ‚ð“Ç‚Ýž‚Ý
-	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return; };	//‰æ‘œ“Ç‚Ýž‚Ýƒ`ƒFƒbƒN
+	this->image = new IMAGE(dir, fileName);				//‰æ‘œ‚ð“Ç‚Ýž‚Ý
+	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return false; };	//‰æ‘œ“Ç‚Ýž‚Ýƒ`ƒFƒbƒN
 
-	this->sikaku->Width = this->image->GetWidth();		//•‚ðÝ’è
-	this->sikaku->Height = this->image->GetHeight();	//‚‚³‚ðÝ’è
-
-	this->IsAlive = true;	//¶‚«‚Ä‚¢‚é
-	this->IsDraw = true;	//•`‰æ‚Å‚«‚é
+	this->sikaku_draw = new SIKAKU();			//ŽlŠpƒNƒ‰ƒXì¬
+	this->sikaku_draw->SetValue(StartX, StartY, this->image->GetWidth(), this->image->GetHeight());	//•`‰æ—Ìˆæ
 
 	this->collision = new COLLISION();			//“–‚½‚è”»’è‚ðì¬
 	this->collision->SetIsDraw(true);			//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ‚·‚é
+	this->collision->SetSikaku(StartX, StartY, this->image->GetWidth(), this->image->GetHeight());	//“–‚½‚è”»’è‚Ì—Ìˆæ
+	
+	this->IsAlive = true;	//¶‚«‚Ä‚¢‚é
+	this->IsDraw = true;	//•`‰æ‚Å‚«‚é
 
 	this->IsCreate = true;	//ì¬Š®—¹
 
-	return;
+	return true;
 }
 
 //‘€ì
@@ -155,6 +151,13 @@ void CHARACTOR::Operation(KEYDOWN *keydown)
 		this->MoveRight();
 	}
 
+	this->collision->SetSikaku(
+		this->sikaku_draw->Left,
+		this->sikaku_draw->Top,
+		this->sikaku_draw->Right,
+		this->sikaku_draw->Bottom
+	);	//“–‚½‚è”»’è‚Ì—Ìˆæ‚ÌXV
+
 	return;
 }
 
@@ -165,7 +168,7 @@ void CHARACTOR::Draw(void)
 	{
 		if (this->IsDraw == true)	//•`‰æ‚Å‚«‚é‚È‚ç
 		{
-			this->image->Draw(this->X, this->Y);			//‰æ‘œ‚ð•`‰æ
+			this->image->Draw(this->sikaku_draw->Left, this->sikaku_draw->Top);	//‰æ‘œ‚ð•`‰æ
 			this->collision->Draw(GetColor(255, 255, 0));	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ
 		}
 	}

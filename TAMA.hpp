@@ -57,13 +57,10 @@ class TAMA
 private:
 	ANIMATION *Anime;		//弾のアニメーション
 	COLLISION *collision;	//当たり判定
+	SIKAKU *sikaku_draw;	//描画の領域
+
 	int ATK;				//攻撃力
 	int Speed;				//速さ
-
-	int X;					//縦の位置
-	int Y;					//横の位置
-	int Width;				//弾の幅
-	int Height;				//弾の高さ
 
 	int No;					//弾の番号
 
@@ -71,36 +68,22 @@ private:
 
 public:
 	TAMA();						//コンストラクタ
-	TAMA(int, int, int);		//コンストラクタ
+	TAMA(int);					//コンストラクタのオーバーロード
 
 	virtual ~TAMA();			//デストラクタ
 
 	void SetAnime(const char *, const char *, int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
 
-	void SetInitInfo(int, int, int);	//初期設定
+	void SetInitInfo(int, int, int, int, int);	//初期設定
 
 	void SetSpeed(int);			//速さを設定
 	int GetSpeed(void);			//速さを取得
 
-	int  GetX(void);			//X位置を取得
-	int  GetY(void);			//Y位置を取得
-
-	void SetX(int);				//X位置を設定
-	void SetY(int);				//Y位置を設定
-
-	void GetWidth(int);			//幅を取得
-	int SetWidth(void);			//幅を設定
-
-	void GetHeight(int);		//高さを取得
-	int SetHeight(void);		//高さを設定
-
 	int  GetNo(void);			//Noを取得
 	void SetNo(int);			//Noを設定
 
-	int GetCenterX(void);		//中心値を取得
-	int GetCenterY(void);		//中心値を取得
-
+	void moveTama(void);		//弾を移動
 	bool Operation(void);		//操作
 
 	void Draw();				//画像を描画

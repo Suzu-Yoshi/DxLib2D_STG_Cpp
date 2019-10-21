@@ -30,14 +30,18 @@ SIKAKU::~SIKAKU()
 	return;
 }
 
-int SIKAKU::GetRight(void)
+//ŽlŠp‚ÌˆÊ’u‚ðÝ’è
+void SIKAKU::SetValue(int left, int top, int width, int height)
 {
-	return this->Left + this->Width;
-}
+	this->Left = left;
+	this->Top = top;
+	this->Width = width;
+	this->Height = height;
 
-int SIKAKU::GetBottom(void)
-{
-	return this->Top + this->Height;
+	this->Width = left + width;
+	this->Bottom = top + height;
+
+	return;
 }
 
 int SIKAKU::GetCenterX(void)

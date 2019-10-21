@@ -13,7 +13,7 @@ class COLLISION
 {
 private:
 	
-	SIKAKU *sikaku;	//当たり判定の領域
+	SIKAKU *Sikaku;	//当たり判定の領域
 
 	bool IsDraw;	//当たり判定の範囲を描画するか？
 
@@ -24,6 +24,7 @@ public:
 	bool DetectionCheck(COLLISION);		//衝突検知
 
 	void SetIsDraw(bool);				//当たり判定の範囲を描画するか
+	void SetSikaku(int, int, int, int);	//四角の位置を設定
 
 	void Draw(void);					//当たり判定の範囲を描画
 	void Draw(unsigned int);			//オーバーロード

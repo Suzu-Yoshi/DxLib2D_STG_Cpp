@@ -44,9 +44,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
 
 	PLAYER *player = new PLAYER();
-	player->SetX_Y(0, GAME_HEIGHT / 2 - player->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
-	player->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
-	player->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
+	player->Init(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2, 0, 0);	//初期設定
+	player->SetIsKeyOperation(true);							//キャラクタはキー操作ができる
+	player->SetSpeed(CHARA_SPEED_1_SLOW);						//キャラクターの速さを設定
 
 	while (TRUE)	//無限ループ
 	{
@@ -64,8 +64,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
-		jiki->Draw(0,0);
-		baku->Draw(0,0);
+		jiki->Draw(0, 0);
+		baku->Draw(0, 0);
 
 		//chara->Operation(keydown);
 		//chara->Draw();
@@ -92,7 +92,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	delete fps;				//FPSを破棄
 	delete keydown;			//keydownを破棄
-	
+
 
 
 	DxLib_End();			//ＤＸライブラリ使用の終了処理
