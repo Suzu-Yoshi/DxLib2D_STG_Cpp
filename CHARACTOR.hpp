@@ -15,6 +15,7 @@
 //########## マクロ定義 ##########
 
 //移動速度
+#define CHARA_SPEED_0_NONE	0
 #define CHARA_SPEED_1_SLOW	1
 #define CHARA_SPEED_2_FAST	4
 #define CHARA_SPEED_3_STAR	8
@@ -53,9 +54,15 @@ public:
 	void SetIsKeyOperation(bool);	//キーボードで操作ができるか設定する
 
 	bool SetInitPlayer(void);		//プレイヤーの初期設定
+	bool SetInitStar(int,int);		//星の初期設定
 
 	int GetTurretX(void);			//砲塔のX位置を取得
 	int GetTurretY(void);			//砲塔のY位置を取得
+
+	COLLISION* GetCollision(void);	//当たり判定を取得
+
+	bool GetIsDraw(void);			//描画できるか取得
+	void SetIsDraw(bool);			//描画できるか設定
 
 	void Operation(KEYDOWN *);		//操作
 	void Draw(void);				//描画

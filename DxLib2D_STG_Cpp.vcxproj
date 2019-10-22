@@ -28,6 +28,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PLAYER.cpp" />
     <ClCompile Include="SIKAKU.cpp" />
+    <ClCompile Include="STAR.cpp" />
     <ClCompile Include="TAMA.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +41,7 @@
     <ClInclude Include="main.hpp" />
     <ClInclude Include="PLAYER.hpp" />
     <ClInclude Include="SIKAKU.hpp" />
+    <ClInclude Include="STAR.hpp" />
     <ClInclude Include="TAMA.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

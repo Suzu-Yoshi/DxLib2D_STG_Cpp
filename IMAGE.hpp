@@ -10,9 +10,14 @@
 
 //########## マクロ定義：画像のファイルパスと名前 ##########
 #define MY_IMG_DIR_JIKI		R"(.\MY_IMG\JIKI\)"	//自機の画像ファイルの場所
+#define MY_IMG_DIR_BACK		R"(.\MY_IMG\BACK\)"	//背景の画像ファイルの場所
+#define MY_IMG_DIR_STAR		R"(.\MY_IMG\STAR\)"	//星の画像ファイルの場所
 
 #define MY_IMG_NAME_JIKI_1	R"(jiki_1_mini.png)"		//自機１の名前
 #define MY_IMG_NAME_JIKI_2	R"(jiki_2_mini.png)"		//自機２の名前
+
+#define MY_IMG_NAME_BACK	R"(back.jpg)"				//背景の名前
+#define MY_IMG_NAME_STAR	R"(star.png)"				//星の名前
 
 //########## マクロ定義：エラーメッセージ##########
 #define IMAGE_ERROR_TITLE "IMAGE_ERROR"					//エラータイトル

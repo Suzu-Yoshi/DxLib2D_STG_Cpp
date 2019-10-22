@@ -90,7 +90,9 @@ bool IMAGE::GetIsLoad(void)
 //‰æ‘œ‚ð•`‰æ
 void IMAGE::Draw(int X,int Y)
 {
-	DrawGraph(X, Y, this->Handle, TRUE);	
+	DrawGraph(X, Y, this->Handle, TRUE);
+
+
 	return;
 }
 

@@ -130,6 +130,37 @@ bool CHARACTOR::SetInitPlayer(void)
 	return true;
 }
 
+//星の初期設定
+//引　数：int：最初のX位置
+//引　数：int：最初のY位置
+bool CHARACTOR::SetInitStar(int StartX,int StartY)
+{
+	this->image = new IMAGE(MY_IMG_DIR_STAR, MY_IMG_NAME_STAR);	//画像を読み込み
+
+	if (this->image->GetIsLoad() == FALSE) { return false; };		//画像読み込みチェック
+
+	this->sikaku_draw = new SIKAKU();			//四角クラス作成
+	this->sikaku_draw->SetValue(
+		StartX,
+		StartY,
+		this->image->GetWidth(),
+		this->image->GetHeight());	//描画領域
+
+	this->collision = new COLLISION();			//当たり判定を作成
+	this->collision->SetIsDraw(true);			//当たり判定の範囲を描画する
+	this->collision->SetValue(
+		StartX,
+		StartY,
+		this->image->GetWidth(),
+		this->image->GetHeight());	//当たり判定の領域
+
+	this->IsAlive = true;	//生きている
+	this->IsDraw = true;	//描画できる
+
+	return true;
+}
+
+
 //砲塔のX位置を取得
 int CHARACTOR::GetTurretX(void)
 {
@@ -140,6 +171,24 @@ int CHARACTOR::GetTurretX(void)
 int CHARACTOR::GetTurretY(void)
 {
 	return this->sikaku_draw->Bottom - this->sikaku_draw->Height / 2;
+}
+
+//当たり判定を取得
+COLLISION* CHARACTOR::GetCollision(void)
+{
+	return this->collision;
+}
+
+//描画できるか取得
+bool CHARACTOR::GetIsDraw(void)
+{
+	return this->IsDraw;
+}
+
+//描画できるか設定
+void CHARACTOR::SetIsDraw(bool b)
+{
+	this->IsDraw = b; return;
 }
 
 //操作

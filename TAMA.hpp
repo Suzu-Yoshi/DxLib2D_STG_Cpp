@@ -8,6 +8,7 @@
 #include "DxLib.h"
 #include "ANIMATION.hpp"
 #include "COLLISION.hpp"
+#include "STAR.hpp"
 #include "main.hpp"
 
 //########## マクロ定義：画像のファイルパスと名前 ##########

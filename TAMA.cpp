@@ -4,6 +4,7 @@
 
 //########## ヘッダーファイル読み込み ##########
 #include "TAMA.hpp"
+#include "STAR.hpp"
 
 //########## クラスの定義 ##########
 
@@ -16,7 +17,6 @@ TAMA::TAMA()
 
 	return;
 }
-
 
 //コンストラクタ
 TAMA::TAMA(int StartX,int StartY,int Number)
@@ -136,17 +136,31 @@ void TAMA::moveTama(void)
 //操作
 bool TAMA::Operation(void)
 {
-	//弾が画面の中なら・・・
-	if (this->sikaku_draw->Left >= 0 && this->sikaku_draw->Right <= GAME_WIDTH &&
-		this->sikaku_draw->Top >= 0 && this->sikaku_draw->Bottom <= GAME_HEIGHT)
+	//弾が画面の外なら・・・
+	if (this->sikaku_draw->Left < 0 || this->sikaku_draw->Right > GAME_WIDTH 
+		|| this->sikaku_draw->Top < 0 || this->sikaku_draw->Bottom > GAME_HEIGHT)
 	{
-		this->moveTama();	//弾を移動
-
-		return true;	//弾の操作を継続
+		return false;		//弾の操作終了
 	}
 
-	//弾が画面の外なら・・・
-	return false;		//弾の操作終了
+	//星の当たり判定
+	for (int tate = 0; tate < STAR_TATE_MAX; tate++)
+	{
+		for (int yoko = 0; yoko < STAR_YOKO_MAX; yoko++)
+		{
+			if (star[tate][yoko]->GetIsDraw() == true)	//星を描画している場合
+			{
+				if (this->collision->DetectionCheck(star[tate][yoko]->GetCollision()) == true)	//星とあたったら
+				{
+					star[tate][yoko]->SetIsDraw(false);	//星の描画終了
+					return false;	//弾の操作終了
+				}
+			}
+		}
+	}
+
+	this->moveTama();	//弾を移動
+	return true;	//弾の操作を継続	
 }
 
 //画像を描画

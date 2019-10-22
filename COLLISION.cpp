@@ -23,12 +23,12 @@ COLLISION::~COLLISION()
 
 //衝突検知チェック
 //引　数：Collision：衝突した相手
-bool COLLISION::DetectionCheck(COLLISION aite)
+bool COLLISION::DetectionCheck(COLLISION *aite)
 {
-	if (this->Top < aite.Bottom &&
-		this->Left < aite.Right &&
-		this->Bottom > aite.Top &&
-		this->Right > aite.Left)
+	if (this->Top < aite->Bottom &&
+		this->Left < aite->Right &&
+		this->Bottom > aite->Top &&
+		this->Right > aite->Left)
 	{
 		return true;	//当たった
 	}

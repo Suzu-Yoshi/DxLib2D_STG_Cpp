@@ -18,7 +18,7 @@ public:
 	COLLISION();			//コンストラクタ
 	virtual ~COLLISION();	//デストラクタ
 
-	bool DetectionCheck(COLLISION);		//衝突検知
+	bool DetectionCheck(COLLISION*);	//衝突検知
 
 	void SetIsDraw(bool);				//当たり判定の範囲を描画するか
 	
