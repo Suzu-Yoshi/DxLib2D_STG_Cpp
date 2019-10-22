@@ -10,8 +10,7 @@
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 COLLISION::COLLISION()
 {
-	this->Sikaku = new SIKAKU();			//ŽlŠpƒNƒ‰ƒXì¬
-	this->SetIsDraw(true);
+	this->SetIsDraw(true);	//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ð•`‰æ‚·‚é
 
 	return;
 }
@@ -19,8 +18,6 @@ COLLISION::COLLISION()
 //ƒfƒXƒgƒ‰ƒNƒ^
 COLLISION::~COLLISION()
 {
-	delete Sikaku;
-
 	return;
 }
 
@@ -28,10 +25,10 @@ COLLISION::~COLLISION()
 //ˆø@”FCollisionFÕ“Ë‚µ‚½‘ŠŽè
 bool COLLISION::DetectionCheck(COLLISION aite)
 {
-	if (this->Sikaku->Top < aite.Sikaku->Bottom &&
-		this->Sikaku->Left < aite.Sikaku->Right &&
-		this->Sikaku->Bottom > aite.Sikaku->Top &&
-		this->Sikaku->Right > aite.Sikaku->Left)
+	if (this->Top < aite.Bottom &&
+		this->Left < aite.Right &&
+		this->Bottom > aite.Top &&
+		this->Right > aite.Left)
 	{
 		return true;	//“–‚½‚Á‚½
 	}
@@ -51,15 +48,8 @@ void COLLISION::Draw(void)
 {
 	if (this->IsDraw == true)
 	{
-		DrawBox(this->Sikaku->Left, this->Sikaku->Top, this->Sikaku->Right, this->Sikaku->Bottom, GetColor(255,0,0), false);	//˜g‚¾‚¯•`‰æ
+		DrawBox(this->Left, this->Top, this->Right, this->Bottom, GetColor(255,0,0), false);	//˜g‚¾‚¯•`‰æ
 	}
-	return;
-}
-
-//ŽlŠp‚ÌˆÊ’u‚ðÝ’è
-void COLLISION::SetSikaku(int left, int top, int width, int height)
-{
-	this->Sikaku->SetValue(left, top, width, height);
 	return;
 }
 
@@ -69,7 +59,7 @@ void COLLISION::Draw(unsigned int Color)
 {
 	if (this->IsDraw == true)
 	{
-		DrawBox(this->Sikaku->Left, this->Sikaku->Top, this->Sikaku->Right, this->Sikaku->Bottom, Color, false);	//˜g‚¾‚¯•`‰æ
+		DrawBox(this->Left, this->Top, this->Right, this->Bottom, Color, false);	//˜g‚¾‚¯•`‰æ
 	}
 	return;
 }

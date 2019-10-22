@@ -30,21 +30,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetDrawScreen(DX_SCREEN_BACK);								//Draw系関数は裏画面に描画
 
-	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
-	if (jiki->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
-
-	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU, MY_ANIME_NAME_BAKU_1, 16, 16, 1, BAKU_1_HEIGHT, BAKU_1_HEIGHT, 0.05, true);
-	if (baku->GetIsLoad() == false) { return -1; };	//画像読み込みチェック
-
-	//CHARACTOR * chara = new CHARACTOR();
-	//if (chara->GetIsCreate() == false) { return -1; };	//キャラクタ作成チェック
-
-	//chara->SetX_Y(0, GAME_HEIGHT / 2 - chara->GetWidth() / 2);	//キャラクタを画面の半分の位置に表示
-	//chara->SetIsKeyOperation(true);			//キャラクタはキー操作ができる
-	//chara->SetSpeed(CHARA_SPEED_1_SLOW);	//キャラクターの速さを設定
-
 	PLAYER *player = new PLAYER();
-	player->Init(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2, 0, 0);	//初期設定
+	if (player->SetInitPlayer() == false) { return -1; }		//プレイヤーの初期設定
+
 	player->SetIsKeyOperation(true);							//キャラクタはキー操作ができる
 	player->SetSpeed(CHARA_SPEED_1_SLOW);						//キャラクターの速さを設定
 
@@ -64,12 +52,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		keydown->IsKeyDown(KEY_INPUT_UP);
 
-		jiki->Draw(0, 0);
-		baku->Draw(0, 0);
-
-		//chara->Operation(keydown);
-		//chara->Draw();
-
 		player->Operation(keydown);
 		player->OperationTama(keydown);
 		player->Draw();
@@ -84,16 +66,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		fps->Wait();				//FPSの処理[待つ]
 	}
 
-	delete player;
-
-	delete jiki;			//jikiを破棄
-	delete baku;			//bakuを破棄
-	//delete chara;			//charaを破棄
-
+	delete player;			//playerを破棄
 	delete fps;				//FPSを破棄
 	delete keydown;			//keydownを破棄
-
-
 
 	DxLib_End();			//ＤＸライブラリ使用の終了処理
 

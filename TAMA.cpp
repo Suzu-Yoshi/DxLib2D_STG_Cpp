@@ -19,13 +19,13 @@ TAMA::TAMA()
 
 
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-TAMA::TAMA(int Number)
+TAMA::TAMA(int StartX,int StartY,int Number)
 {
 	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
 
 	this->SetInitInfo(
-		0,
-		GAME_HEIGHT / 2 - this->Anime->GetHeight() / 2,
+		StartX,
+		StartY - this->Anime->GetHeight() / 2,	//–C“ƒ‚Ì’†S - ’e‚Ì‚‚³ / 2‚ÅA–C“ƒ‚Ì’†S‚©‚ç’e‚ğ”­Ë
 		this->Anime->GetWidth(),
 		this->Anime->GetHeight(),
 		Number);	//‰Šúİ’è
@@ -42,7 +42,7 @@ void TAMA::SetInitInfo(int left, int top, int width, int height, int Number)
 	this->sikaku_draw->SetValue(left, top, width, height);	//•`‰æˆÊ’u‚ğİ’è
 
 	this->collision = new COLLISION();		//“–‚½‚è”»’è‚ğì¬
-	this->collision->SetSikaku(left, top, width, height);	//“–‚½‚è”»’è‚Ì—Ìˆæ‚ğİ’è
+	this->collision->SetValue(left, top, width, height);	//“–‚½‚è”»’è‚Ì—Ìˆæ‚ğİ’è
 	this->collision->SetIsDraw(true);		//“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğ•`‰æ‚·‚é
 
 	this->SetNo(Number);	//”Ô†‚ğİ’è
@@ -116,7 +116,14 @@ void TAMA::moveTama(void)
 {
 	this->sikaku_draw->Left += this->Speed;	//‰æ‘œ‚ÌˆÊ’u‚ğˆÚ“®
 
-	this->collision->SetSikaku(
+	this->sikaku_draw->SetValue(
+		this->sikaku_draw->Left,
+		this->sikaku_draw->Top,
+		this->sikaku_draw->Width,
+		this->sikaku_draw->Height
+	);	//•`‰æ—Ìˆæ‚ğXV
+
+	this->collision->SetValue(
 		this->sikaku_draw->Left,
 		this->sikaku_draw->Top,
 		this->sikaku_draw->Width,
@@ -133,6 +140,8 @@ bool TAMA::Operation(void)
 	if (this->sikaku_draw->Left >= 0 && this->sikaku_draw->Right <= GAME_WIDTH &&
 		this->sikaku_draw->Top >= 0 && this->sikaku_draw->Bottom <= GAME_HEIGHT)
 	{
+		this->moveTama();	//’e‚ğˆÚ“®
+
 		return true;	//’e‚Ì‘€ì‚ğŒp‘±
 	}
 

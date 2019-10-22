@@ -10,7 +10,7 @@
 //上に動く
 VOID CHARACTOR::MoveUp(VOID)
 {
-	if (this->sikaku_draw->Top- this->Speed >= GAME_LEFT)
+	if (this->sikaku_draw->Top - this->Speed >= GAME_LEFT)
 	{
 		this->sikaku_draw->Top -= this->Speed;
 	}
@@ -95,13 +95,6 @@ void CHARACTOR::SetIsAlive(bool alive)
 	return;
 }
 
-
-//作成できたか取得
-bool CHARACTOR::GetIsCreate(void)
-{
-	return this->IsCreate;
-}
-
 //キーボードで操作ができるか設定する
 void CHARACTOR::SetIsKeyOperation(bool isOpe)
 {
@@ -109,25 +102,44 @@ void CHARACTOR::SetIsKeyOperation(bool isOpe)
 	return;
 }
 
-//初期設定
-bool CHARACTOR::Init(const char * dir, const char *fileName,int StartX,int StartY)
+//プレイヤーの初期設定
+bool CHARACTOR::SetInitPlayer(void)
 {
-	this->image = new IMAGE(dir, fileName);				//画像を読み込み
-	if (this->image->GetIsLoad() == FALSE) { this->IsCreate = false; return false; };	//画像読み込みチェック
+	this->image = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_2);	//画像を読み込み
+
+	if (this->image->GetIsLoad() == FALSE) { return false; };		//画像読み込みチェック
 
 	this->sikaku_draw = new SIKAKU();			//四角クラス作成
-	this->sikaku_draw->SetValue(StartX, StartY, this->image->GetWidth(), this->image->GetHeight());	//描画領域
+	this->sikaku_draw->SetValue(
+		GAME_LEFT,
+		GAME_HEIGHT / 2 - this->image->GetWidth() / 2,
+		this->image->GetWidth(),
+		this->image->GetHeight());	//描画領域
 
 	this->collision = new COLLISION();			//当たり判定を作成
 	this->collision->SetIsDraw(true);			//当たり判定の範囲を描画する
-	this->collision->SetSikaku(StartX, StartY, this->image->GetWidth(), this->image->GetHeight());	//当たり判定の領域
-	
+	this->collision->SetValue(
+		GAME_LEFT,
+		GAME_HEIGHT / 2 - this->image->GetWidth() / 2,
+		this->image->GetWidth(),
+		this->image->GetHeight());	//当たり判定の領域
+
 	this->IsAlive = true;	//生きている
 	this->IsDraw = true;	//描画できる
 
-	this->IsCreate = true;	//作成完了
-
 	return true;
+}
+
+//砲塔のX位置を取得
+int CHARACTOR::GetTurretX(void)
+{
+	return this->sikaku_draw->Right;
+}
+
+//砲塔のY位置を取得
+int CHARACTOR::GetTurretY(void)
+{
+	return this->sikaku_draw->Bottom - this->sikaku_draw->Height / 2;
 }
 
 //操作
@@ -151,11 +163,18 @@ void CHARACTOR::Operation(KEYDOWN *keydown)
 		this->MoveRight();
 	}
 
-	this->collision->SetSikaku(
+	this->sikaku_draw->SetValue(
 		this->sikaku_draw->Left,
 		this->sikaku_draw->Top,
-		this->sikaku_draw->Right,
-		this->sikaku_draw->Bottom
+		this->sikaku_draw->Width,
+		this->sikaku_draw->Height
+	);	//描画領域の更新
+
+	this->collision->SetValue(
+		this->sikaku_draw->Left,
+		this->sikaku_draw->Top,
+		this->sikaku_draw->Width,
+		this->sikaku_draw->Height
 	);	//当たり判定の領域の更新
 
 	return;

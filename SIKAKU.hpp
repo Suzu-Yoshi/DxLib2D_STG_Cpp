@@ -25,7 +25,7 @@ public:
 	SIKAKU(int, int, int, int);	//コンストラクタのオーバーロード
 	virtual ~SIKAKU();	//デストラクタ
 
-	void SetValue(int, int, int, int);	//四角の位置を設定
+	void SetValue(int, int, int, int);	//左、上、幅、高さを決定
 
 	int GetCenterX(void);	//四角の中心のX位置を取得
 	int GetCenterY(void);	//四角の中心のY位置を取得

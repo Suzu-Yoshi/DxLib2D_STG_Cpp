@@ -10,7 +10,7 @@
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 PLAYER::PLAYER()
 {
-	this->tama.reserve(10);	//’e‚ÌŒ»İ‚Ì—\‘zÅ‘åãŒÀ”‚ğ—\‚ßŒˆ‚ß‚Ä‚¨‚­
+	this->tama.reserve(50);		//’e‚ÌŒ»İ‚Ì—\‘zÅ‘åãŒÀ”‚ğ—\‚ßŒˆ‚ß‚Ä‚¨‚­
 	this->tama_itr = this->tama.begin();	//æ“ª‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚é
 
 	this->TamaNumber = 0;	//’e‚Ì”Ô†‚ğ‰Šú‰»
@@ -59,7 +59,13 @@ void PLAYER::OperationTama(KEYDOWN *keydown)
 //’e‚ğì¬
 void PLAYER::CreateTama(void)
 {
-	this->tama.emplace_back(TAMA(TamaNumber));		//—v‘f‚ğ’Ç‰Á
+	this->tama.emplace_back(
+		TAMA(
+			this->GetTurretX(),
+			this->GetTurretY(),
+			TamaNumber
+		)
+	);		//—v‘f‚ğ’Ç‰Á
 
 	this->TamaNumber++;	//’e‚Ì”‚ğ‘‚â‚·
 

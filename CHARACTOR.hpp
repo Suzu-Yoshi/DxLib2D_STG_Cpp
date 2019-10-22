@@ -31,7 +31,7 @@ private:
 
 	int Speed;						//速度
 	bool IsAlive;					//生きているか
-	bool IsCreate;					//作成できたか
+	
 	bool IsKeyOperation;			//キーボードで操作ができるか
 	bool IsDraw;					//描画できるか
 
@@ -47,14 +47,16 @@ public:
 
 	int GetSpeed(void);				//速さを取得
 	bool GetIsAlive(void);			//生きているか取得
-	bool GetIsCreate(void);			//作成できたか取得
 
 	void SetSpeed(int);				//速さを設定
 	void SetIsAlive(bool);			//生きているか設定
 	void SetIsKeyOperation(bool);	//キーボードで操作ができるか設定する
 
-	bool Init(const char*, const char*, int, int);	//初期設定
-	bool Init(const char*, const char*);			//初期設定
+	bool SetInitPlayer(void);		//プレイヤーの初期設定
+
+	int GetTurretX(void);			//砲塔のX位置を取得
+	int GetTurretY(void);			//砲塔のY位置を取得
+
 	void Operation(KEYDOWN *);		//操作
 	void Draw(void);				//描画
 
