@@ -7,6 +7,7 @@
 //########## ヘッダーファイル読み込み ##########
 #include "DxLib.h"
 #include "CHARACTOR.hpp"
+#include "ANIMATION.hpp"
 
 //########## マクロ定義 ##########
 #define STAR_TATE_MAX	15
@@ -25,10 +26,13 @@
 class STAR : public CHARACTOR	//CHARACTORクラスを継承
 {
 private:
-	
+	ANIMATION *animation;	//爆発アニメ
+
 public:
 	STAR();				//コンストラクタ
 	virtual ~STAR();	//デストラクタ
+
+	void DrawAnime(void);	//爆発アニメ描画
 };
 
 //########## 外部オブジェクト ##########

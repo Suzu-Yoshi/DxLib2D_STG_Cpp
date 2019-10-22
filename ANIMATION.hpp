@@ -15,8 +15,14 @@
 #define MY_ANIME_DIR_BAKU		R"(.\MY_ANIME\bakuhatsu\)"		//爆発の画像ファイルの場所
 
 #define MY_ANIME_NAME_BAKU_1	R"(bakuhatsu_01.png)"			//爆発の画像の名前
-#define BAKU_1_WIDTH	70	//分割する幅の大きさ
+#define BAKU_1_WIDTH	64	//分割する幅の大きさ
 #define BAKU_1_HEIGHT	64	//分割する高さの大きさ
+
+#define BAKU_1_YOKO_CNT	15
+#define BAKU_1_TATE_CNT	1
+#define BAKU_1_ALL_CNT	BAKU_1_YOKO_CNT * BAKU_1_TATE_CNT
+
+#define BAKU_1_ANI_SPEED 0.1
 
 //########## マクロ定義：エラーメッセージ##########
 #define ANIMATION_ERROR_TTILE	"ANIMATION_ERROR"						//エラータイトル
@@ -54,6 +60,8 @@ public:
 	int GetHeight(void);			//高さを取得
 
 	bool GetIsLoad(void);			//読み込めた？
+
+	bool GetIsAnimeStop(void);		//アニメーションはストップしたかを取得
 
 	void Draw(int,int);				//画像を描画
 };

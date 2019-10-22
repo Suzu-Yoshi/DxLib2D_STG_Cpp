@@ -59,6 +59,9 @@ public:
 	int GetTurretX(void);			//–C“ƒ‚ÌXˆÊ’u‚ğæ“¾
 	int GetTurretY(void);			//–C“ƒ‚ÌYˆÊ’u‚ğæ“¾
 
+	int Getsikaku_draw_GetCenterX(void);		//•`‰æXˆÊ’u‚ğæ“¾
+	int Getsikaku_draw_GetCenterY(void);		//•`‰æYˆÊ’u‚ğæ“¾
+
 	COLLISION* GetCollision(void);	//“–‚½‚è”»’è‚ğæ“¾
 
 	bool GetIsDraw(void);			//•`‰æ‚Å‚«‚é‚©æ“¾

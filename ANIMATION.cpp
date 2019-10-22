@@ -116,6 +116,12 @@ bool ANIMATION::GetIsLoad(void)
 	return this->IsLoad;
 }
 
+//アニメーションはストップしたかを取得
+bool  ANIMATION::GetIsAnimeStop(void)
+{
+	return this->IsAnimeStop;
+}
+
 //画像を描画
 void ANIMATION::Draw(int X, int Y)
 {

@@ -173,6 +173,18 @@ int CHARACTOR::GetTurretY(void)
 	return this->sikaku_draw->Bottom - this->sikaku_draw->Height / 2;
 }
 
+//•`‰æXˆÊ’u‚ðŽæ“¾
+int CHARACTOR::Getsikaku_draw_GetCenterX(void)
+{
+	return this->sikaku_draw->GetCenterX();
+}
+
+//•`‰æYˆÊ’u‚ðŽæ“¾
+int CHARACTOR::Getsikaku_draw_GetCenterY(void)
+{
+	return this->sikaku_draw->GetCenterY();
+}
+
 //“–‚½‚è”»’è‚ðŽæ“¾
 COLLISION* CHARACTOR::GetCollision(void)
 {

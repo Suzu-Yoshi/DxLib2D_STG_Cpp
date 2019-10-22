@@ -150,7 +150,7 @@ bool TAMA::Operation(void)
 		{
 			if (star[tate][yoko]->GetIsDraw() == true)	//¯‚ğ•`‰æ‚µ‚Ä‚¢‚éê‡
 			{
-				if (this->collision->DetectionCheck(star[tate][yoko]->GetCollision()) == true)	//¯‚Æ‚ ‚½‚Á‚½‚ç
+				if (this->collision->DetectionCheck(star[tate][yoko]->GetCollision()) == true)	//¯‚Æ“–‚½‚Á‚½‚ç
 				{
 					star[tate][yoko]->SetIsDraw(false);	//¯‚Ì•`‰æI—¹
 					return false;	//’e‚Ì‘€ìI—¹
@@ -160,7 +160,7 @@ bool TAMA::Operation(void)
 	}
 
 	this->moveTama();	//’e‚ğˆÚ“®
-	return true;	//’e‚Ì‘€ì‚ğŒp‘±	
+	return true;		//’e‚Ì‘€ì‚ğŒp‘±	
 }
 
 //‰æ‘œ‚ğ•`‰æ

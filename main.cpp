@@ -77,7 +77,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			for (int yoko = 0; yoko < STAR_YOKO_MAX; yoko++)
 			{
-				star[tate][yoko]->Draw();
+				star[tate][yoko]->Draw();		//¯‚Ì•`‰æ
+				star[tate][yoko]->DrawAnime();	//”š”­‚ÌƒAƒjƒ
 			}
 		}
 
