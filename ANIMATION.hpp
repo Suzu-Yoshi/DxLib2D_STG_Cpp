@@ -12,9 +12,8 @@
 #include "FPS.hpp"
 
 //########## マクロ定義：画像のファイルパスと名前 ##########
-#define MY_ANIME_DIR_BAKU		R"(.\MY_ANIME\bakuhatsu\)"		//爆発の画像ファイルの場所
+#define MY_ANIME_BOMB_PATH	".\\MY_ANIME\\bakuhatsu\\bakuhatsu_01.png"	//爆発の画像ファイルパス
 
-#define MY_ANIME_NAME_BAKU_1	R"(bakuhatsu_01.png)"			//爆発の画像の名前
 #define BAKU_1_WIDTH	64	//分割する幅の大きさ
 #define BAKU_1_HEIGHT	64	//分割する高さの大きさ
 
@@ -33,7 +32,6 @@ class ANIMATION
 {
 private:
 	std::string FilePath;	//パス
-	std::string FileName;	//名前
 
 	std::vector<int> Handle;				//ハンドル
 	std::vector<int>::iterator Handle_itr;	//ハンドルのイテレータ(ポインタ)
@@ -49,12 +47,12 @@ private:
 	bool IsAnimeStop;			//アニメーションはストップしたか？
 
 	bool IsLoad;				//読み込めたか？
-	
+
 public:
-	ANIMATION(const char *, const char *, int, int, int, int, int, double,bool);	//コンストラクタ
+	ANIMATION(const char*, int, int, int, int, int, double, bool);	//コンストラクタ
 	virtual ~ANIMATION();	//デストラクタ
 
-	std::string GetFileName(void);	//名前を取得
+	std::string GetFilePath(void);	//名前を取得
 
 	int GetWidth(void);				//幅を取得
 	int GetHeight(void);			//高さを取得
@@ -63,6 +61,6 @@ public:
 
 	bool GetIsAnimeStop(void);		//アニメーションはストップしたかを取得
 
-	void Draw(int,int);				//画像を描画
+	void Draw(int, int);				//画像を描画
 };
 

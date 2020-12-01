@@ -9,8 +9,7 @@
 
 //コンストラクタ
 //コンストラクタ
-//引　数：const char *：画像のディレクトリ
-//引　数：const char *：画像の名前
+//引　数：const char *：画像のパス
 //引　数：int：画像の総分割数
 //引　数：int：画像の横向きの分割数
 //引　数：int：画像の縦向きの分割数
@@ -18,11 +17,10 @@
 //引　数：int：画像の分割された縦の大きさ
 //引　数：double：次の画像に変更する速さ
 //引　数：bool：アニメーションをループするかどうか
-ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed, bool IsLoop)
+ANIMATION::ANIMATION(const char *path, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed, bool IsLoop)
 {
 	//メンバ変数を初期化
 	this->FilePath = "";	//パス
-	this->FileName = "";	//名前
 
 	this->Handle.resize(SplitNumALL);			//resize：vectorの要素数を変更する
 	this->Handle_itr = this->Handle.begin();	//先頭のポインタを入れる
@@ -36,9 +34,7 @@ ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int Spr
 	this->IsLoad = false;			//読み込めたか？
 
 	//画像を読み込み
-	std::string LoadfilePath;		//画像のファイルパスを作成
-	LoadfilePath += dir;
-	LoadfilePath += name;
+	std::string LoadfilePath(path);	//画像のファイルパスで初期化
 
 	//画像を分割して読み込み
 	LoadDivGraph(LoadfilePath.c_str(), SplitNumALL, SpritNumX, SplitNumY, SplitWidth, SplitHeight, &this->Handle[0]);
@@ -59,7 +55,6 @@ ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int Spr
 	}
 
 	this->FilePath = LoadfilePath;		//画像のパスを設定
-	this->FileName = name;				//画像の名前を設定
 
 	GetGraphSize(
 		this->Handle[0],	//このハンドルの画像の大きさを取得
@@ -93,9 +88,9 @@ ANIMATION::~ANIMATION()
 }
 
 //ファイルの名前を取得
-std::string ANIMATION::GetFileName(void)
+std::string ANIMATION::GetFilePath(void)
 {
-	return this->FileName;
+	return this->FilePath;
 }
 
 //幅を取得

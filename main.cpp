@@ -21,12 +21,12 @@ STAR *star[STAR_TATE_MAX][STAR_YOKO_MAX];					//星クラスのオブジェクト配列を生成
 //########## プログラムで最初に実行される関数 ##########
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	ChangeWindowMode(GAME_WINDOW_MODECHANGE);					//ウィンドウモードに設定
-	SetGraphMode(GAME_WIDTH, GAME_HEIGHT, GAME_COLOR);			//指定の数値で画面を表示する
-
-	SetWindowStyleMode(SET_WINDOW_ST_MODE_DEFAULT);				//タイトルバーあり
-
-	SetMainWindowText(TEXT(GAME_WINDOW_NAME));					//タイトルの文字
+	SetOutApplicationLogValidFlag(FALSE);				//Log.txtを出力しない
+	ChangeWindowMode(TRUE);								//ウィンドウモードに設定
+	SetGraphMode(GAME_WIDTH, GAME_HEIGHT, GAME_COLOR);	//指定の数値でウィンドウを表示する
+	SetWindowStyleMode(GAME_WINDOW_BAR);				//タイトルバーはデフォルトにする
+	SetMainWindowText(GAME_WINDOW_NAME);				//ウィンドウのタイトルの文字
+	SetAlwaysRunFlag(TRUE);								//非アクティブでも実行する
 
 	if (DxLib_Init() == -1) { return -1; }						//ＤＸライブラリ初期化処理
 
@@ -65,11 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		fps->Update();				//FPSの処理[更新]
 
-		keydown->IsKeyDown(KEY_INPUT_LEFT);
-
 		//▼▼▼▼▼ゲームのシーンここから▼▼▼▼▼
-
-		keydown->IsKeyDown(KEY_INPUT_UP);
 
 		back->Draw(0, 0);
 

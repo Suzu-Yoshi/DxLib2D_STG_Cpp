@@ -12,10 +12,7 @@
 #include "main.hpp"
 
 //########## マクロ定義：画像のファイルパスと名前 ##########
-#define MY_ANIME_DIR_TAMA		R"(.\MY_ANIME\tama\)"		//弾の画像フォルダの場所
-
-#define MY_ANIME_NAME_TAMA_AKA		R"(tama_aka_01.png)"		//弾の画像の名前
-#define MY_ANIME_NAME_TAMA_AO		R"(tama_ao_01.png)"			//弾の画像の名前
+#define MY_ANIME_TAMA_PATH		".\\MY_ANIME\\tama\\tama_aka_01.png"	//弾の画像フォルダの場所
 
 #define TAMA_WIDTH	12	//分割する幅の大きさ
 #define TAMA_HEIGHT	12	//分割する高さの大きさ
@@ -53,7 +50,7 @@ public:
 
 	virtual ~TAMA();			//デストラクタ
 
-	void SetAnime(const char *, const char *, int, int, int, int, int, double);	//弾のアニメーションを作成
+	void SetAnime(const char *, int, int, int, int, int, double);	//弾のアニメーションを作成
 	void SetIsEnbled(bool);		//描画を設定
 
 	void SetInitInfo(int, int, int, int, int);	//初期設定

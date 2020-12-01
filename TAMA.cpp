@@ -11,7 +11,7 @@
 //コンストラクタ
 TAMA::TAMA()
 {
-	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
+	this->SetAnime(MY_ANIME_TAMA_PATH, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
 
 	this->SetInitInfo(0, 0, 0, 0, 0);	//初期設定
 
@@ -21,7 +21,7 @@ TAMA::TAMA()
 //コンストラクタ
 TAMA::TAMA(int StartX,int StartY,int Number)
 {
-	this->SetAnime(MY_ANIME_DIR_TAMA, MY_ANIME_NAME_TAMA_AKA, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
+	this->SetAnime(MY_ANIME_TAMA_PATH, 4, 4, 1, TAMA_WIDTH, TAMA_HEIGHT, TAMA_DRAW_SPEED);
 
 	this->SetInitInfo(
 		StartX,
@@ -52,10 +52,9 @@ void TAMA::SetInitInfo(int left, int top, int width, int height, int Number)
 }
 
 //弾のアニメーションを作成
-void TAMA::SetAnime(const char *dir, const char *path, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed)
+void TAMA::SetAnime(const char *path, int SplitNumALL, int SpritNumX, int SplitNumY, int SplitWidth, int SplitHeight, double changeSpeed)
 {
 	this->Anime = new ANIMATION(
-		dir,
 		path,
 		SplitNumALL,
 		SpritNumX,
